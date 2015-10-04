@@ -1,0 +1,71 @@
+<html ng-app="esSearchApp">
+<head>
+  <meta charset="utf-8">
+  <title>SearchOpenRecipes</title>
+
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bower_components/bootstrap-material-design/dist/css/roboto.min.css" rel="stylesheet">
+  <link href="bower_components/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet">
+  <link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+  <link href="bower_components/ng-prettyjson/dist/ng-prettyjson.min.css" rel="stylesheet">
+  <link href="css/esSearchApp.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+  <div class="navbar navbar-default">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-material-light-blue-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
+      <h3>Search Elastic</h3>
+      <div ng-view></div>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a href="index.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://www.docker.com">Docker</a></li>
+            <li><a href="https://docs.docker.com/compose">docker-compose</a></li>
+            <li><a href="https://nodejs.org/en/">Node.js</a></li>
+            <li><a href="http://expressjs.com/">Express</a></li>
+            <li><a href="https://angularjs.org/">AngularJS</a></li>
+            <li><a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html">Material Design for Bootstrap</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.elastic.co/products/elasticsearch">ElasticSearch</a></li>
+            <li class="divider"></li>
+            <li><a href="https://github.com/fictivekin/openrecipes">Open Recipes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/elasticsearch/elasticsearch.min.js"></script>
+  <script src="bower_components/elasticsearch/elasticsearch.angular.min.js"></script>
+  <script src="bower_components/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
+
+  <script src="js/EsSearchApp.js"></script>
+  <script src="js/search/EsSearchService.js"></script>
+  <script src="js/search/EsSearchController.js"></script>
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+  <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+
+  <script>
+      $(document).ready(function() {
+          // initialize bootstrap-material-design
+          $.material.init();
+      });
+  </script>
+
+</body>
+</html>

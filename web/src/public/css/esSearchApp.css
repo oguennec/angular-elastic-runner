@@ -1,0 +1,16 @@
+::-webkit-input-placeholder {
+   color: white !important;  
+   opacity : 0.5;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: white !important;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white !important;  
+}
+
+:-ms-input-placeholder {  
+   color: white !important;  
+}

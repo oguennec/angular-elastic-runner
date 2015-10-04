@@ -1,0 +1,19 @@
+es:
+  build: es
+  volumes:
+   - es/config:/usr/share/elasticsearch/config
+   - es/data:/data
+  ports:
+   - "9200:9200"
+   - "9300:9300"
+
+web:
+  build: web
+  volumes:
+   - web/src/public:/src/public
+  ports:
+   - "8089:8089"
+  links:
+   - es:es
+
+

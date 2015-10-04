@@ -1,0 +1,22 @@
+{
+  "name": "SearchOpenRecipes",
+  "version": "0.0.1",
+  "description": "Demo search application using the EEAN stack - ElasticSearch Express AngularJS Node.JS and bootstrap-material-design",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib/bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "elasticsearch": "~8.2.0",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.2",
+    "bootstrap-material-design": "0.3.0",
+    "ng-prettyjson": "0.1.9"
+  },
+  "resolutions": {
+    "angular": "1.4.7"
+  }
+}

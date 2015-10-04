@@ -1,0 +1,4 @@
+http.cors.enabled:      true
+http.cors.allow-origin: "*"
+#http.cors.allow-origin: /https?:\/\/(www.)?elastic.co/
+
