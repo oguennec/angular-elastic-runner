@@ -18,6 +18,7 @@ The following software must be available on the host running the application (li
 
 Tested with docker 1.6.2 and docker-compose 1.3.2
 > Ports 8089 9200 9300 must be available on the host.
+
 ## Installation
 ```sh
 $ git clone https://github.com/oguennec/eean-docker-compose
@@ -25,6 +26,7 @@ $ cd eean-docker-compose
 $ docker-compose build
 $ docker-compose up -d
 ```
+
 ## Load data in ElasticSearch
 ```sh
 $ cd es/data ; curl -XPOST localhost:9200/_bulk --data-binary @"openrecipes.2000rows.json"
