@@ -9,12 +9,13 @@
   ],
   "dependencies": {
     "angular": "~1.4.7",
-    "angular-route": "~1.4.7",
+//    "angular-route": "~1.4.7",
     "elasticsearch": "~8.2.0",
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.2",
     "bootstrap-material-design": "0.3.0",
-    "ng-prettyjson": "0.1.9"
+    "ng-prettyjson": "0.1.9",
+    "angular-ui-router": "~0.2.15"
   },
   "resolutions": {
     "angular": "1.4.7"

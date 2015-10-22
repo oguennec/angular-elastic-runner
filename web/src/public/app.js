@@ -2,22 +2,24 @@
     'use strict';
 
     var app = angular.module('app', [
-        'ngRoute',
+        'ui.router',
         'ngPrettyJson',
         'elasticsearch'
     ]);
 
-    app.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider
-            .when('/', {
+    app.config(['$stateProvider','$urlRouterProvider', function ($stateProvider,$urlRouterProvider) {
+        $urlRouterProvider.otherwise("/search");
+        $stateProvider
+            .state('home', {
+                url: '/',
                 controller: 'esSearchCtrl',
                 templateUrl: 'app/search/esSearch.html'
             })
     }]);
 
 
-    app.run(['$route', function ($route) {
+/*    app.run(['$route', function ($route) {
         // Include $route to kick start the router.
-    }]);
+    }]);*/
 
 })();
