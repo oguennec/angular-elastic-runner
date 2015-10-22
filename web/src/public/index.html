@@ -1,71 +1,78 @@
-<html ng-app="esSearchApp">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>SearchOpenRecipes</title>
+    <meta charset="utf-8">
+    <title>SearchOpenRecipes</title>
 
-  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="bower_components/bootstrap-material-design/dist/css/roboto.min.css" rel="stylesheet">
-  <link href="bower_components/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet">
-  <link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
-  <link href="bower_components/ng-prettyjson/dist/ng-prettyjson.min.css" rel="stylesheet">
-  <link href="css/esSearchApp.css" rel="stylesheet">
-
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cerulean/bootstrap.min.css" rel="stylesheet">-->
+    <link href="lib/bootstrap-material-design/dist/css/roboto.css" rel="stylesheet">
+    <link href="lib/bootstrap-material-design/dist/css/material.css" rel="stylesheet">
+    <link href="lib/bootstrap-material-design/dist/css/ripples.css" rel="stylesheet">
+    <link href="lib/ng-prettyjson/dist/ng-prettyjson.min.css" rel="stylesheet">
+    <link href="css/esSearchApp.css" rel="stylesheet">
 </head>
-<body>
 
+<body ng-app="app">
 
-  <div class="navbar navbar-default">
+<div class="navbar navbar-default">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-material-light-blue-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+        <a class="navbar-brand">
+            <span>Search Elastic</span>
+        </a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target=".navbar-material-light-blue-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
     </div>
     <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
-      <h3>Search Elastic</h3>
-      <div ng-view></div>
-      <ul class="nav navbar-nav navbar-left">
-        <li class="dropdown">
-          <a href="index.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="https://www.docker.com">Docker</a></li>
-            <li><a href="https://docs.docker.com/compose">docker-compose</a></li>
-            <li><a href="https://nodejs.org/en/">Node.js</a></li>
-            <li><a href="http://expressjs.com/">Express</a></li>
-            <li><a href="https://angularjs.org/">AngularJS</a></li>
-            <li><a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html">Material Design for Bootstrap</a></li>
-            <li class="divider"></li>
-            <li><a href="https://www.elastic.co/products/elasticsearch">ElasticSearch</a></li>
-            <li class="divider"></li>
-            <li><a href="https://github.com/fictivekin/openrecipes">Open Recipes</a></li>
-          </ul>
-        </li>
-      </ul>
+        <div ng-view></div>
+        <ul class="nav navbar-nav navbar-left">
+            <li class="dropdown">
+                <a href="index.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Help<b
+                        class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://www.docker.com">Docker</a></li>
+                    <li><a href="https://docs.docker.com/compose">docker-compose</a></li>
+                    <li><a href="https://nodejs.org/en/">Node.js</a></li>
+                    <li><a href="http://expressjs.com/">Express</a></li>
+                    <li><a href="https://angularjs.org/">AngularJS</a></li>
+                    <li><a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html">Material
+                        Design for Bootstrap</a></li>
+                    <li class="divider"></li>
+                    <li><a href="https://www.elastic.co/products/elasticsearch">ElasticSearch</a></li>
+                    <li class="divider"></li>
+                    <li><a href="https://github.com/fictivekin/openrecipes">Open Recipes</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
-  </div>
+</div>
 
-  <script src="bower_components/angular/angular.min.js"></script>
-  <script src="bower_components/angular-route/angular-route.min.js"></script>
-  <script src="bower_components/elasticsearch/elasticsearch.min.js"></script>
-  <script src="bower_components/elasticsearch/elasticsearch.angular.min.js"></script>
-  <script src="bower_components/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
 
-  <script src="js/EsSearchApp.js"></script>
-  <script src="js/search/EsSearchService.js"></script>
-  <script src="js/search/EsSearchController.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/elasticsearch/elasticsearch.js"></script>
+<script src="lib/elasticsearch/elasticsearch.angular.js"></script>
+<script src="lib/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
 
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
-  <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+<script src="lib/jquery/dist/jquery.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
+<script src="lib/bootstrap-material-design/dist/js/material.js"></script>
 
-  <script>
-      $(document).ready(function() {
-          // initialize bootstrap-material-design
-          $.material.init();
-      });
-  </script>
+
+<script src="app.js"></script>
+<script src="app/search/esSearchSvc.js"></script>
+<script src="app/search/esSearchCtrl.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // initialize bootstrap-material-design
+        $.material.init();
+    });
+</script>
 
 </body>
 </html>
