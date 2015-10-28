@@ -1,4 +1,5 @@
-<html>
+<!doctype html>
+<html ng-app="app">
 <head>
     <meta charset="utf-8">
     <title>SearchOpenRecipes</title>
@@ -12,7 +13,50 @@
     <link href="css/esSearchApp.css" rel="stylesheet">
 </head>
 
-<body ng-app="app">
+<body>
+
+<div>
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                <span>Search Elastic</span>
+            </a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-material-light-blue-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
+            <form class="nav navbar-nav navbar-left navbar-form" role="search">
+                <div class="form-group">
+                    <input ui-sref="search" type="text" ng-model="vm.queryTerm" placeholder="search ingredient"
+                           class="form-control">
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="index.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Help<b
+                            class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.docker.com">Docker</a></li>
+                        <li><a href="https://docs.docker.com/compose">docker-compose</a></li>
+                        <li><a href="https://nodejs.org/en/">Node.js</a></li>
+                        <li><a href="http://expressjs.com/">Express</a></li>
+                        <li><a href="https://angularjs.org/">AngularJS</a></li>
+                        <li><a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html">Material
+                            Design for Bootstrap</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://www.elastic.co/products/elasticsearch">ElasticSearch</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://github.com/fictivekin/openrecipes">Open Recipes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <div ui-view></div>
 
@@ -21,12 +65,10 @@
 <script src="lib/elasticsearch/elasticsearch.js"></script>
 <script src="lib/elasticsearch/elasticsearch.angular.js"></script>
 <script src="lib/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
-
 <script src="lib/jquery/dist/jquery.js"></script>
 <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 <script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="lib/bootstrap-material-design/dist/js/material.js"></script>
-
 
 <script src="app.js"></script>
 <script src="app/search/esSearchSvc.js"></script>

@@ -7,19 +7,15 @@
         'elasticsearch'
     ]);
 
-    app.config(['$stateProvider','$urlRouterProvider', function ($stateProvider,$urlRouterProvider) {
-        $urlRouterProvider.otherwise("/search");
+    app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise("/");
         $stateProvider
-            .state('home', {
-                url: '/',
+            .state('search', {
+                url: '/search',
                 controller: 'esSearchCtrl',
+                controllerAs: 'vm',
                 templateUrl: 'app/search/esSearch.html'
             })
     }]);
-
-
-/*    app.run(['$route', function ($route) {
-        // Include $route to kick start the router.
-    }]);*/
 
 })();

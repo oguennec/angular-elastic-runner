@@ -14,7 +14,6 @@ angular.module('app').factory('esSearchSvc', ['esFactory', function (esFactory) 
             body: {
                 "query": {
                     "match": {_all: searchTerm}
-                    //"match": { "data.name":searchTerm }
                 }
 
             }

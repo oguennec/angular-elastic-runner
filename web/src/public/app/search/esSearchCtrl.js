@@ -1,12 +1,32 @@
-angular.module('app').controller('esSearchCtrl', ['$scope', 'esSearchSvc', function ($scope, esSearchSvc) {
+(function () {
+    'use strict';
 
+    angular.module("app")
+        .controller("esSearchCtrl",
+        ["$scope", "esSearchSvc", esSearchCtrl]);
 
-    $scope.search = function () {
+    function esSearchCtrl($scope, esSearchSvc) {
 
-        $scope.resultsArr = [];
-        $scope.resultsArr = esSearchSvc.searchES($scope.queryTerm);
+        var vm = this;
+
+        vm.queryTerm = '';
+
+        $scope.$parent.$watch(function () {
+                if (!$scope.$parent.vm) {
+                    return
+                } else {
+                    return $scope.$parent.vm.queryTerm;
+                }
+                ;
+            }, function (newVal, oldVal) {
+                if (!newVal) {
+                    return
+                } else {
+                    vm.resultsArr = esSearchSvc.searchES(newVal);
+                }
+            }
+        );
 
     };
 
-
-}])
+})();
