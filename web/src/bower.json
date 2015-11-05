@@ -14,7 +14,11 @@
     "bootstrap": "~3.3.2",
     "bootstrap-material-design": "0.3.0",
     "ng-prettyjson": "0.1.9",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "startbootstrap-simple-sidebar": "~1.0.4",
+    "angular-recursion": "~1.0.5",
+    "angular-elastic-builder": "~1.4.0",
+    "font-awesome": "~4.4.0"
   },
   "resolutions": {
     "angular": "1.4.7"

@@ -6,6 +6,12 @@
 
     <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <!--<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cerulean/bootstrap.min.css" rel="stylesheet">-->
+
+    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link href="lib/startbootstrap-simple-sidebar/css/simple-sidebar.css" rel="stylesheet">
+    <link href="css/simple-sidebar-modified.css" rel="stylesheet">
     <link href="lib/bootstrap-material-design/dist/css/roboto.css" rel="stylesheet">
     <link href="lib/bootstrap-material-design/dist/css/material.css" rel="stylesheet">
     <link href="lib/bootstrap-material-design/dist/css/ripples.css" rel="stylesheet">
@@ -15,7 +21,7 @@
 
 <body>
 
-<div>
+<nav>
     <div class="navbar navbar-default">
         <div class="navbar-header">
             <a class="navbar-brand">
@@ -31,8 +37,11 @@
         <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
             <form class="nav navbar-nav navbar-left navbar-form" role="search">
                 <div class="form-group">
-                    <input ui-sref="search" type="text" ng-model="vm.queryTerm" placeholder="search ingredient"
+                    <input id="main-search" ui-sref="search" type="text" ng-model="vm.queryTerm"
+                           ng-change="$broadcast('PleaseQueryES')" placeholder="search ingredient"
                            class="form-control">
+                    <span ui-sref="querybuilder" class="glyphicon glyphicon-search"></span>
+                    <span ui-sref="querybuilder.runquery" id="menu-toggle" class="fa fa-eye"></span>
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
@@ -42,11 +51,18 @@
                     <ul class="dropdown-menu">
                         <li><a href="https://www.docker.com">Docker</a></li>
                         <li><a href="https://docs.docker.com/compose">docker-compose</a></li>
+                        <li class="divider"></li>
                         <li><a href="https://nodejs.org/en/">Node.js</a></li>
                         <li><a href="http://expressjs.com/">Express</a></li>
+
                         <li><a href="https://angularjs.org/">AngularJS</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://github.com/dncrews/angular-elastic-builder">Angular Elastic Builder</a></li>
+                        <li class="divider"></li>
                         <li><a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html">Material
                             Design for Bootstrap</a></li>
+                        <li><a href="http://startbootstrap.com/template-overviews/simple-sidebar/">Simple Sidebar</a>
+                        </li>
                         <li class="divider"></li>
                         <li><a href="https://www.elastic.co/products/elasticsearch">ElasticSearch</a></li>
                         <li class="divider"></li>
@@ -56,7 +72,7 @@
             </ul>
         </div>
     </div>
-</div>
+</nav>
 
 <div ui-view></div>
 
@@ -69,15 +85,27 @@
 <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 <script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="lib/bootstrap-material-design/dist/js/material.js"></script>
+<script src="lib/angular-recursion/angular-recursion.js"></script>
+<script src="lib/angular-elastic-builder/dist/angular-elastic-builder.js"></script>
 
 <script src="app.js"></script>
-<script src="app/search/esSearchSvc.js"></script>
-<script src="app/search/esSearchCtrl.js"></script>
+<script src="app/search/esSearch.svc.js"></script>
+<script src="app/search/esSearch.ctrl.js"></script>
+<script src="app/querybuilder/queryBuilder.ctrl.js"></script>
 
 <script>
     $(document).ready(function () {
         // initialize bootstrap-material-design
         $.material.init();
+    });
+</script>
+
+<!-- Menu Toggle Script -->
+<script>
+    //    $("#menu-toggle").click(function(e) {
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
     });
 </script>
 

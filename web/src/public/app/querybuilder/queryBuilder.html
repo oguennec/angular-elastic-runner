@@ -1,0 +1,26 @@
+<div id="wrapper">
+
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <h3>
+                Elastic Query Builder
+                <!--<span id="menu-toggle-sidebar" class="fa fa-eye-slash"></span>-->
+            </h3>
+
+            <div data-elastic-builder="vm.elasticBuilderData"></div>
+            <a class="btn btn-info" ng-click="vm.showEsQuery();setBg='show-query'" ui-sref="querybuilder.showquery">Query</a>
+            <a class="btn btn-success" ng-click="vm.submitEsQuery();setBg='show-results'"
+               ui-sref="querybuilder.runquery">Results</a>
+
+        </ul>
+    </div>
+
+    <div id="page-content-wrapper">
+        <div ng-class="setBg">
+            <div class="container-fluid" ui-view="builderOutcome">
+
+            </div>
+        </div>
+    </div>
+</div>
+
