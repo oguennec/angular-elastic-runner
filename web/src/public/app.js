@@ -17,6 +17,9 @@
                 controllerAs: 'vm',
                 templateUrl: 'app/search/showResults.html'
             })
+            .state('search-failed', {
+                templateUrl: 'app/search/esAccessError.html'
+            })
             .state('querybuilder', {
                 url: '/querybuilder',
                 controller: 'QueryBuilder',
@@ -43,6 +46,15 @@
                 },
                 data: {
                     bodyClass: 'bg-results'
+                }
+            })
+            .state('querybuilder.search-' +
+            'failed', {
+                url: '/error',
+                views: {
+                    'builderOutcome': {
+                        templateUrl: 'app/search/esAccessError.html'
+                    }
                 }
             })
     }]);

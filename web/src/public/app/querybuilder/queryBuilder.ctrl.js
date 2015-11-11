@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module("app")
-        .controller("QueryBuilder", ["esSearchSvc", QueryBuilder]);
+        .controller("QueryBuilder", ["$state", "esSearchSvc", QueryBuilder]);
 
-    function QueryBuilder(esSearchSvc) {
+    function QueryBuilder($state, esSearchSvc) {
 
         var vm = this;
         vm.elasticBuilderData = {};
@@ -29,23 +29,23 @@
 
         vm.elasticBuilderData.query = [];
 
-/*        vm.elasticBuilderData.query = [
-            {
-                "filtered": {
-                    "query": {
-                        "match": {"_all": "kale"}
-                    },
-                    "filter": {
-                        "range": {
-                            "datePublished": {
-                                "gte": "2013-02-10",
-                                "lte": "2013-03-29"
-                            }
-                        }
-                    }
-                }
-            }
-        ];*/
+        /*        vm.elasticBuilderData.query = [
+         {
+         "filtered": {
+         "query": {
+         "match": {"_all": "kale"}
+         },
+         "filter": {
+         "range": {
+         "datePublished": {
+         "gte": "2013-02-10",
+         "lte": "2013-03-29"
+         }
+         }
+         }
+         }
+         }
+         ];*/
 
         vm.elasticBuilderData.needsUpdate = true;
 
@@ -85,7 +85,18 @@
 
         vm.submitEsQuery = function () {
             var vm = this;
-            vm.resultsArr = esSearchSvc.esQuerySubmit(vm.esBuildQuery());
+
+            esSearchSvc.esQuerySubmit(vm.esBuildQuery()).then(esSearchSuccess, esSearchError);
+
+            function esSearchSuccess(results) {
+                vm.resultsArr = results;
+            }
+
+            function esSearchError(reason) {
+                console.trace(reason);
+                $state.go('querybuilder.search-failed');
+                // display error message in ui-view
+            }
         };
 
     }

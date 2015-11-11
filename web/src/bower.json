@@ -18,7 +18,7 @@
     "startbootstrap-simple-sidebar": "~1.0.4",
     "angular-recursion": "~1.0.5",
     "angular-elastic-builder": "~1.4.0",
-    "font-awesome": "~4.4.0"
+    "font-awesome": "git://github.com/FortAwesome/Font-Awesome.git#~4.4.0"
   },
   "resolutions": {
     "angular": "1.4.7"

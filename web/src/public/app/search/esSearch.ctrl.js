@@ -3,9 +3,9 @@
 
     angular.module("app")
         .controller("esSearchCtrl",
-        ["$scope", "esSearchSvc", esSearchCtrl]);
+        ["$state", "$scope", "esSearchSvc", esSearchCtrl]);
 
-    function esSearchCtrl($scope, esSearchSvc) {
+    function esSearchCtrl($state, $scope, esSearchSvc) {
 
         var vm = this;
 
@@ -16,7 +16,16 @@
         };
 
         $scope.$on('PleaseQueryES', function() {
-            vm.resultsArr = esSearchSvc.searchES($scope.$parent.vm.queryTerm);
+            //vm.resultsArr = esSearchSvc.searchES($scope.$parent.vm.queryTerm);
+            esSearchSvc.searchES($scope.$parent.vm.queryTerm).then(esSearchSuccess,esSearchError);
+            function esSearchSuccess (results){
+                vm.resultsArr = results;
+            }
+            function esSearchError (reason){
+                console.trace(reason);
+                $state.go('search-failed');
+                // display error message in ui-view
+            }
         });
 
 /*        $scope.$parent.$watch(function () {

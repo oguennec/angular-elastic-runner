@@ -1,9 +1,11 @@
-angular.module('app').factory('esSearchSvc', ['esFactory', function (esFactory) {
+angular.module('app').factory('esSearchSvc', ['$q', 'esFactory', function ($q, esFactory) {
 
     var esClient = esFactory({
         host: 'es:9200'
 //   ,log: 'trace'
     });
+
+    var deferred = $q.defer();
 
     var esSearch = function (searchTerm) {
 
@@ -29,12 +31,15 @@ angular.module('app').factory('esSearchSvc', ['esFactory', function (esFactory) 
                 }
 
                 results.push(hits_out);
+                deferred.resolve(results);
+
             }, function (err) {
-                console.trace(err.message);
+                //console.trace(err.message);
+                deferred.reject('Call to Elastic Search has failed');
             });
 
-        return results;
-
+        //return results;
+        return deferred.promise;
     };
 
     /*
@@ -45,20 +50,20 @@ angular.module('app').factory('esSearchSvc', ['esFactory', function (esFactory) 
 
     var esQuerySubmit = function (esQuery) {
         var results = [];
-/*        esClient.search({
+        /*        esClient.search({
+         index: 'openrecipes',
+         type: 'recipe',
+         body: {
+         "query": {
+         "match": {_all: 'kale'}
+         }
+         }
+         })*/
+        esClient.search({
             index: 'openrecipes',
             type: 'recipe',
-            body: {
-                "query": {
-                    "match": {_all: 'kale'}
-                }
-            }
-        })*/
-                    esClient.search({
-             index: 'openrecipes',
-             type: 'recipe',
-             body: esQuery
-             })
+            body: esQuery
+        })
             .then(function (response) {
                 var hits_in;
                 var hits_out = [];
@@ -70,11 +75,12 @@ angular.module('app').factory('esSearchSvc', ['esFactory', function (esFactory) 
                 }
 
                 results.push(hits_out);
+                deferred.resolve(results);
             }, function (err) {
-                console.trace(err.message);
+                deferred.reject('Call to Elastic Search has failed');
             });
 
-        return results;
+        return deferred.promise;
     };
 
 
