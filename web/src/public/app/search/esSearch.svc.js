@@ -1,4 +1,4 @@
-angular.module('app').factory('esSearchSvc', ['esFactory', function (esFactory) {
+angular.module('app').factory('esSearchSvc', ['$state','esFactory', function ($state, esFactory) {
 
     var esClient = esFactory({
         host: 'es:9200'
@@ -31,6 +31,8 @@ angular.module('app').factory('esSearchSvc', ['esFactory', function (esFactory) 
                 results.push(hits_out);
             }, function (err) {
                 console.trace(err.message);
+                $state.go('search.failed');
+                console.log($state.current);
             });
 
         return results;
