@@ -31,26 +31,28 @@
                 controllerAs: 'vm',
                 templateUrl: 'app/querybuilder/queryBuilder.html'
             })
-            .state('querybuilder.showquery', {
+            .state('querybuilder.show-query', {
                 //url: '/query',
                 views: {
                     'builderOutcome': {
                         templateUrl: 'app/query/showQuery.html'
                     }
-                },
-                data: {
-                    bodyClass: 'bg-query'
                 }
             })
-            .state('querybuilder.runquery', {
+            .state('querybuilder.run-query', {
                 //url: '/searchEs',
                 views: {
                     'builderOutcome': {
                         templateUrl: 'app/search/showResults.html'
                     }
-                },
-                data: {
-                    bodyClass: 'bg-results'
+                }
+            })
+            .state('querybuilder.run-failed', {
+                //url: '/searchEs',
+                views: {
+                    'builderOutcome': {
+                        templateUrl: 'app/search/esAccessError.html'
+                    }
                 }
             })
     }]);

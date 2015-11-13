@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module("app")
-        .controller("QueryBuilder", ["esSearchSvc", QueryBuilder]);
+        .controller("QueryBuilder", ["$state", "esSearchSvc", QueryBuilder]);
 
-    function QueryBuilder(esSearchSvc) {
+    function QueryBuilder($state, esSearchSvc) {
 
         var vm = this;
         vm.elasticBuilderData = {};
@@ -29,23 +29,23 @@
 
         vm.elasticBuilderData.query = [];
 
-/*        vm.elasticBuilderData.query = [
-            {
-                "filtered": {
-                    "query": {
-                        "match": {"_all": "kale"}
-                    },
-                    "filter": {
-                        "range": {
-                            "datePublished": {
-                                "gte": "2013-02-10",
-                                "lte": "2013-03-29"
-                            }
-                        }
-                    }
-                }
-            }
-        ];*/
+        /*        vm.elasticBuilderData.query = [
+         {
+         "filtered": {
+         "query": {
+         "match": {"_all": "kale"}
+         },
+         "filter": {
+         "range": {
+         "datePublished": {
+         "gte": "2013-02-10",
+         "lte": "2013-03-29"
+         }
+         }
+         }
+         }
+         }
+         ];*/
 
         vm.elasticBuilderData.needsUpdate = true;
 
@@ -83,9 +83,36 @@
             vm.esQueryStringified = JSON.stringify(esQuery, null, 2);
         };
 
+
+        var callEsSearchSvc = function (esQuery) {
+            esSearchSvc.esClient.search({
+                index: 'openrecipes',
+                type: 'recipe',
+                body: esQuery
+            })
+                .then(function (response) {
+                    var hits_in;
+                    var hits_out = [];
+                    var results = [];
+
+                    hits_in = (response.hits || {}).hits || [];
+
+                    for (var ii = 0; ii < hits_in.length; ii++) {
+                        hits_out.push(hits_in[ii]._source);
+                    }
+
+                    results.push(hits_out);
+                    vm.resultsArr = results;
+                    $state.go('querybuilder.run-query');
+                }, function (err) {
+                    console.trace(err.message);
+                    $state.go('querybuilder.run-failed');
+                });
+        };
+
+
         vm.submitEsQuery = function () {
-            var vm = this;
-            vm.resultsArr = esSearchSvc.esQuerySubmit(vm.esBuildQuery());
+            callEsSearchSvc(vm.esBuildQuery());
         };
 
     }
