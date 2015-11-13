@@ -1,4 +1,4 @@
-angular.module('app').factory('esSearchSvc', ['$state','esFactory', function ($state, esFactory) {
+angular.module('app').factory('esSearchSvc', ['$state', 'esFactory', function ($state, esFactory) {
 
     var esClient = esFactory({
         host: 'es:9200'
@@ -32,35 +32,19 @@ angular.module('app').factory('esSearchSvc', ['$state','esFactory', function ($s
             }, function (err) {
                 console.trace(err.message);
                 $state.go('search.failed');
-                console.log($state.current);
             });
 
         return results;
 
     };
 
-    /*
-     var esQuerySubmit = function (esQuery) {
-     return null;
-     };*/
-
-
     var esQuerySubmit = function (esQuery) {
         var results = [];
-/*        esClient.search({
+        esClient.search({
             index: 'openrecipes',
             type: 'recipe',
-            body: {
-                "query": {
-                    "match": {_all: 'kale'}
-                }
-            }
-        })*/
-                    esClient.search({
-             index: 'openrecipes',
-             type: 'recipe',
-             body: esQuery
-             })
+            body: esQuery
+        })
             .then(function (response) {
                 var hits_in;
                 var hits_out = [];

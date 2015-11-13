@@ -55,4 +55,7 @@
             })
     }]);
 
+    app.run(['$state', 'stateWatcherService', function ($state, stateWatcherService) {
+    }]);
+
 })();
