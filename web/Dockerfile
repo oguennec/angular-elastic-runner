@@ -4,6 +4,8 @@ MAINTAINER Olivier Guennec <oguennec@gmail.com>
 # web application source code
 ADD src /src
 
+# npm behind proxy
+
 # web application dependencies managed by Node.js
 RUN cd /src; npm install
 
