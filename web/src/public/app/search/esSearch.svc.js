@@ -1,7 +1,11 @@
-angular.module('app').factory('esSearchSvc', ['$state', 'esFactory', function ($state, esFactory) {
+angular.module('app').factory('esSearchSvc', ['$location', '$state', 'esFactory', function ($location, $state, esFactory) {
+
+    console.log($location.$$host);
+
+    var esEndpointLocation = $location.$$host+':9200';
 
     var esClient = esFactory({
-        host: 'es:9200'
+        host: esEndpointLocation
 //   ,log: 'trace'
     });
 

@@ -8,6 +8,12 @@
         'angular-elastic-builder'
     ]);
 
+    app.config(function($locationProvider) {
+        $locationProvider.html5Mode(true).hashPrefix('!');
+    })
+    
+
+
     app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/search");
         $stateProvider
