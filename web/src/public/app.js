@@ -8,10 +8,13 @@
         'angular-elastic-builder'
     ]);
 
-    app.config(function($locationProvider) {
-        $locationProvider.html5Mode(true).hashPrefix('!');
-    })
     
+    app.config(function($locationProvider) {
+        $locationProvider.html5Mode({
+          enabled: true
+         ,requireBase: false
+        });
+    });
 
 
     app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
