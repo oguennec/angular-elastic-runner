@@ -42,7 +42,7 @@ $ docker ps
 ```
 
 ## Development tips
-* Change the EEAN stack or Front-End from the host
+* You can develop on the docker host
 ```sh
 $ cd web/src/public
 ```
@@ -53,19 +53,22 @@ $ cd web/src/public
 > No need to enter inside the docker container to modify the web application
 
 
-* To take into account modification of node.js or bower.js, simply rebuild the application
-
+* To take into account modification of node.js or bower.js, rebuild the containers
 ```sh
-$ docker-compose build
 $ docker-compose stop
+$ docker-compose rm web
+$ docker-compose build
 $ docker-compose up -d
 ```
 > Node.js or bower dependencies are not available outside the web container.
 
-* For troubleshooting npm or bower install, you must enter inside the web container to run these install
+* Enter inside the web container to start karma or run npm or bower commands
 ```sh
 $ docker-enter eeandockercompose_web_1
+$ cd /src
+$ karma start
 ```
+
 * Marvel plugin is a web interface to in ElasticSearch
 http://localhost:9200/_plugin/marvel/sense/index.html
 
