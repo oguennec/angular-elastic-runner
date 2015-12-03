@@ -1,3 +1,5 @@
+[![BuildStatus](https://travis-ci.org/oguennec/eean-docker-compose.svg?branch=master)](https://travis-ci.org/oguennec/eean-docker-compose)
+
 # Demo application : Search Open Recipes
 ## E.E.A.N. stack running on [docker] containers orchestrated by [docker-compose]
 
