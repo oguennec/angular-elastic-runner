@@ -15,43 +15,34 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-    //  'public-lib/lib/angular/angular.js',
-    //  'public-lib/lib/angular-mocks/angular-mocks.js',
-    //  'public/**/*.js',
-    //  'spec/**/*.spec.js'
 
-  'public-lib/lib/angular/angular.js',
-  'public-lib/lib/angular-ui-router/release/angular-ui-router.js',
-  'public-lib/lib/angular-mocks/angular-mocks.js',
-  'public-lib/lib/sinon/lib/sinon.js',
-  'public-lib/lib/ng-prettyjson/dist/ng-prettyjson.min.js',
-  'public-lib/lib/elasticsearch/elasticsearch.js',
-  'public-lib/lib/elasticsearch/elasticsearch.angular.js',
-  'public-lib/lib/jquery/dist/jquery.js',
-  'public-lib/lib/bootstrap/dist/js/bootstrap.js',
-  'public-lib/lib/bootstrap-material-design/dist/js/ripples.js',
-  'public-lib/lib/bootstrap-material-design/dist/js/material.js',
-  'public-lib/lib/angular-recursion/angular-recursion.js',
-  'public-lib/lib/angular-elastic-builder/dist/angular-elastic-builder.js',
+          'public-lib/lib/angular/angular.js',
+          'public-lib/lib/angular-ui-router/release/angular-ui-router.js',
+          'public-lib/lib/angular-mocks/angular-mocks.js',
+          'public-lib/lib/sinon/lib/sinon.js',
+          'public-lib/lib/ng-prettyjson/dist/ng-prettyjson.min.js',
+          'public-lib/lib/elasticsearch/elasticsearch.js',
+          'public-lib/lib/elasticsearch/elasticsearch.angular.js',
+          'public-lib/lib/jquery/dist/jquery.js',
+          'public-lib/lib/bootstrap/dist/js/bootstrap.js',
+          'public-lib/lib/bootstrap-material-design/dist/js/ripples.js',
+          'public-lib/lib/bootstrap-material-design/dist/js/material.js',
+          'public-lib/lib/angular-recursion/angular-recursion.js',
+          'public-lib/lib/angular-elastic-builder/dist/angular-elastic-builder.js',
 
-  'public/app.js',
-  'public/app/search/esSearch.ctrl.js',
-  'public/app/querybuilder/queryBuilder.ctrl.js',
-  'public/app/search/esSearch.svc.js',
-  'public/app/shared/stateWatcher.svc.js',
+          'public/app.js',
+          'public/app/search/esSearch.ctrl.js',
+          'public/app/querybuilder/queryBuilder.ctrl.js',
+          'public/app/search/esSearch.svc.js',
+          'public/app/shared/stateWatcher.svc.js',
 
-/*  'spec/app/search/MyFirstSpec.spec.js',
-  'spec/app/search/esSearch.ctrl.spec.js',
-  'spec/app/search/esSearch.svc.spec.js',
-  'spec/app/querybuilder/queryBuilder.ctrl.spec.js'
-*/
-  'spec/app/search/esSearch.svc.spec.js'
-    ],
+          'spec/app/search/esSearch.svc.spec.js'
+        ],
 
 
         // list of files to exclude
         exclude: [
-    ],
+        ],
 
 
         // preprocess matching files before serving them to the browser
@@ -89,7 +80,7 @@ module.exports = function (config) {
         plugins: [
         'karma-jasmine',
         'karma-phantomjs-launcher'
-    ],
+        ],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
