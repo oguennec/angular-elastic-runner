@@ -38,7 +38,9 @@
                     results.push(hits_out);
                     vm.resultsArr = results;
                     $state.go('search.succeeded');
-                }, function (err) {
+                })
+                .catch(function(err){
+                    vm.errorMessage = err.message;
                     console.trace(err.message);
                     $state.go('search.failed');
                 });

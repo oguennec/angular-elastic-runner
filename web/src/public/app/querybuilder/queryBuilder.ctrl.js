@@ -104,7 +104,14 @@
                     results.push(hits_out);
                     vm.resultsArr = results;
                     $state.go('querybuilder.run-query');
-                }, function (err) {
+                }/*, function (err) {
+                    console.trace('ES error message:'+err);
+                    //console.trace('ES error message:'+err.message);
+                    vm.errorMessage = err.message;
+                    $state.go('querybuilder.run-failed');
+                }*/)
+                .catch(function(err){
+                    vm.errorMessage = err.message;
                     console.trace(err.message);
                     $state.go('querybuilder.run-failed');
                 });
