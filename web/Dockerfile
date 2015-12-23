@@ -15,6 +15,14 @@ RUN npm install -g bower karma-cli phantomjs
 # web application dependencies managed by bower
 RUN cd /src; bower install --allow-root
 
+RUN useradd -ms /bin/bash node
+
+RUN chown -R node:node /src
+
+USER node
+
+ENV HOME /src/
+
 EXPOSE  8089
 
 CMD ["node", "/src/index.js"]
