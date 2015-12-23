@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <input id="main-search" ui-sref="search" type="text" ng-model="vm.queryTerm"
                            ng-change="$broadcast('PleaseQueryES')" placeholder="search ingredient"
-                           class="form-control">
+                           class="form-control" ng-click="vm.queryTerm =''">
                     <span ui-sref="querybuilder" class="glyphicon glyphicon-search"></span>
                     <span ui-sref="querybuilder.runquery" id="menu-toggle" class="fa fa-eye"></span>
                 </div>
