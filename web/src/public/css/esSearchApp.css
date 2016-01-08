@@ -21,8 +21,12 @@
     background: white;
 }
 
-.glyphicons.glyphicons-message-forward {
-    color: white;
+.btn.btn-flat.glyphicon.glyphicon-search {
+    line-height: 14px;
+}
+
+.btn.btn-success.btn-fab-mini.fa.fa-eye {
+    line-height: 14px;
 }
 
 select.form-control {
@@ -144,4 +148,12 @@ pre#prettyjson {
     margin:10px 22px;
     font-size:2em;
     vertical-align:middle;
+}
+
+.navbar .navbar-form {
+    margin-top: 8px;
+}
+
+.navbar .navbar-brand {
+    line-height: 35px;
 }
