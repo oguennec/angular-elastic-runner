@@ -52,7 +52,7 @@
                 //url: '/searchEs',
                 views: {
                     'builderOutcome': {
-                        templateUrl: 'app/search/showResults.html'
+                        templateUrl: 'app/querybuilder/showResults.html'
                     }
                 }
             })
@@ -66,7 +66,7 @@
             })
     }]);
 
-    app.run(['$state', 'stateWatcherService', function ($state, stateWatcherService) {
-    }]);
+/*    app.run(['$state', 'stateWatcherService', function ($state, stateWatcherService) {
+    }]);*/
 
 })();

@@ -1,5 +1,6 @@
 <!doctype html>
 <html ng-app="app">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
     <!--<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cerulean/bootstrap.min.css" rel="stylesheet">-->
 
 
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="lib/startbootstrap-simple-sidebar/css/simple-sidebar.css" rel="stylesheet">
     <link href="css/simple-sidebar-modified.css" rel="stylesheet">
@@ -23,94 +24,97 @@
 
 <body>
 
-<nav>
-    <div class="navbar navbar-default">
-        <div class="navbar-header">
-            <a class="navbar-brand">
-                <span>Search Elastic</span>
-            </a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-material-light-blue-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
-            <form class="nav navbar-nav navbar-left navbar-form" role="search">
-                <div class="form-group">
-                    <input id="main-search" ui-sref="search" type="text" ng-model="vm.queryTerm"
-                           ng-change="$broadcast('PleaseQueryES')" placeholder="search ingredient"
-                           class="form-control" ng-click="vm.queryTerm ='';searchMode = 'simple-search'">
-                    <button ui-sref="querybuilder" class="btn btn-flat glyphicon glyphicon-search" ng-class="{'active':searchMode === 'query-builder'}" ng-click="searchMode = 'query-builder'"></button>
-                    <button ui-sref="querybuilder.runquery" id="menu-toggle" class="btn btn-success btn-fab-mini fa fa-eye"></button>
-                </div>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="index.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Help<b
+    <nav>
+        <div class="navbar navbar-default">
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    <span>Search Elastic</span>
+                </a>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-material-light-blue-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
+                <form class="nav navbar-nav navbar-left navbar-form" role="search">
+                    <div class="form-group">
+                        <input id="main-search" ui-sref="search" type="text" ng-model="vm.queryTerm" ng-change="$broadcast('PleaseQueryES')" placeholder="search ingredient" class="form-control" ng-click="vm.queryTerm ='';searchMode = 'simple-search'">
+                        <button hide-sidebar ui-sref="querybuilder" class="btn btn-success glyphicon glyphicon-search" ng-class="{'active':searchMode === 'query-builder'}" ng-click="searchMode = 'query-builder'"></button>
+                        <!--<button hide-sidebar ui-sref="querybuilder" class="btn btn-flat glyphicon glyphicon-search" ng-class="{'active':searchMode === 'query-builder'}" ng-click="searchMode = 'query-builder'"></button>-->
+                        <!--<button hide-sidebar ui-sref="querybuilder.runquery" class="btn btn-success btn-fab-mini fa fa-eye"></button>-->
+                        <!--                        <button hide-sidebar ui-sref="querybuilder.runquery" id="menu-toggle" class="btn btn-success btn-fab-mini fa fa-eye"></button>-->
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="index.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Help<b
                             class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="https://www.docker.com">Docker</a></li>
-                        <li><a href="https://docs.docker.com/compose">docker-compose</a></li>
-                        <li class="divider"></li>
-                        <li><a href="https://nodejs.org/en/">Node.js</a></li>
-                        <li><a href="http://expressjs.com/">Express</a></li>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://www.docker.com">Docker</a></li>
+                            <li><a href="https://docs.docker.com/compose">docker-compose</a></li>
+                            <li class="divider"></li>
+                            <li><a href="https://nodejs.org/en/">Node.js</a></li>
+                            <li><a href="http://expressjs.com/">Express</a></li>
 
-                        <li><a href="https://angularjs.org/">AngularJS</a></li>
-                        <li class="divider"></li>
-                        <li><a href="https://github.com/dncrews/angular-elastic-builder">Angular Elastic Builder</a></li>
-                        <li class="divider"></li>
-                        <li><a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html">Material
+                            <li><a href="https://angularjs.org/">AngularJS</a></li>
+                            <li class="divider"></li>
+                            <li><a href="https://github.com/dncrews/angular-elastic-builder">Angular Elastic Builder</a></li>
+                            <li class="divider"></li>
+                            <li><a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html">Material
                             Design for Bootstrap</a></li>
-                        <li><a href="http://startbootstrap.com/template-overviews/simple-sidebar/">Simple Sidebar</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="https://www.elastic.co/products/elasticsearch">ElasticSearch</a></li>
-                        <li class="divider"></li>
-                        <li><a href="https://github.com/fictivekin/openrecipes">Open Recipes</a></li>
-                    </ul>
-                </li>
-            </ul>
+                            <li><a href="http://startbootstrap.com/template-overviews/simple-sidebar/">Simple Sidebar</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="https://www.elastic.co/products/elasticsearch">ElasticSearch</a></li>
+                            <li class="divider"></li>
+                            <li><a href="https://github.com/fictivekin/openrecipes">Open Recipes</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<div ui-view></div>
+    <div ui-view></div>
 
-<script src="lib/angular/angular.js"></script>
-<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="lib/elasticsearch/elasticsearch.js"></script>
-<script src="lib/elasticsearch/elasticsearch.angular.js"></script>
-<script src="lib/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
-<script src="lib/jquery/dist/jquery.js"></script>
-<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-<script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
-<script src="lib/bootstrap-material-design/dist/js/material.js"></script>
-<script src="lib/angular-recursion/angular-recursion.js"></script>
-<script src="lib/angular-elastic-builder/dist/angular-elastic-builder.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/elasticsearch/elasticsearch.js"></script>
+    <script src="lib/elasticsearch/elasticsearch.angular.js"></script>
+    <script src="lib/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
+    <script src="lib/bootstrap-material-design/dist/js/material.js"></script>
+    <script src="lib/angular-recursion/angular-recursion.js"></script>
+    <script src="lib/angular-elastic-builder/dist/angular-elastic-builder.js"></script>
 
-<script src="app.js"></script>
-<script src="app/search/esSearch.svc.js"></script>
-<script src="app/search/esSearch.ctrl.js"></script>
-<script src="app/querybuilder/queryBuilder.ctrl.js"></script>
-<script src="app/shared/stateWatcher.svc.js"></script>
+    <script src="app.js"></script>
+    <script src="app/search/esSearch.svc.js"></script>
+    <script src="app/search/esSearch.ctrl.js"></script>
+    <script src="app/querybuilder/queryBuilder.ctrl.js"></script>
+    <script src="app/querybuilder/queryBuilder.div.js"></script>
 
-<script>
-    $(document).ready(function () {
-        // initialize bootstrap-material-design
-        $.material.init();
-    });
-</script>
+    <script src="app/shared/stateWatcher.svc.js"></script>
 
-<!-- Menu Toggle Script -->
-<script>
-    //    $("#menu-toggle").click(function(e) {
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
+    <script>
+        $(document).ready(function() {
+            // initialize bootstrap-material-design
+            $.material.init();
+        });
+    </script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        //    $("#menu-toggle").click(function(e) {
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
 
 </body>
+
 </html>

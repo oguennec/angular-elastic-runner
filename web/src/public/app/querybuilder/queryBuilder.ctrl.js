@@ -7,6 +7,9 @@
     function QueryBuilder($state, esSearchSvc) {
 
         var vm = this;
+        
+        vm.isWrapperToggled = true;
+        
         vm.elasticBuilderData = {};
 
         /**
