@@ -25,4 +25,6 @@ ENV HOME /src/
 
 EXPOSE  8089
 
-CMD ["node", "/src/index.js"]
+WORKDIR /src
+
+CMD ["node", "index.js"]

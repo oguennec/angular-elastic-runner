@@ -36,7 +36,7 @@ $ cd es/data ; curl -XPOST localhost:9200/_bulk --data-binary @"openrecipes.2000
 >openrecipes.2000rows.json contains 2000 recipes from the [OpenRecipes] project.
 
 ## Browse Search Open Recipes
-The responsive web application is then available on http://localhost:8089
+http://localhost:8089
 
 List docker containers running : eeandockercompose_es_1 (ElasticSeach) and eeandockercompose_web_1 (EEAN Stack)
 ```sh
@@ -50,29 +50,25 @@ $ cd web/src/public
 ```
 > The above directory is mounted inside the web container.
 
-> Any change in this directory is available inside the running container.
+> Any change in this directory (from docker host) is available inside the running container.
 
-> No need to enter inside the docker container to modify the web application
+> No need to enter inside the docker container to modify the web application.
 
+> The non-source tree dependencies (nodeJS or bower) are downloaded from inside the web container and not available on the docker host.
 
-* To take into account modification of node.js or bower.js, rebuild the containers
+* To update dependencies: modify package.json or bower.json then build a new image and replace the running web container like this
 ```sh
-$ docker-compose stop
-$ docker-compose rm web
-$ docker-compose build
-$ docker-compose up -d
+$ docker-compose build web
+$ docker-compose up -d web
 ```
-> Node.js or bower dependencies are not available outside the web container.
-
-* Enter inside the web container to start karma or run npm or bower commands
+* Test javascript with Jasmine in Phantomjs by starting Karma like this
 ```sh
-$ docker-enter eeandockercompose_web_1
-$ cd /src
-$ karma start
+$ docker exec -it eeandockercompose_web_1 karma start
 ```
 
-* Marvel plugin is a web interface to in ElasticSearch
+* Marvel plugin is a web interface to ElasticSearch
 http://localhost:9200/_plugin/marvel/sense/index.html
+Plugin to activate in  Elastic container (see es/Dockerfile)
 
 [docker]: <https://www.docker.com>
 [docker-compose]: <https://docs.docker.com/compose>
