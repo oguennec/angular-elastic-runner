@@ -65,7 +65,7 @@ $ docker-compose up -d web
 ```
 * Test javascript with Jasmine in Phantomjs by starting Karma like this
 ```sh
-$ docker exec -it eeandockercompose_web_1 karma start
+$ docker exec eeandockercompose_web_1 karma start
 ```
 
 * Marvel plugin is a web interface to ElasticSearch

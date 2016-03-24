@@ -10,7 +10,7 @@ ADD src /src
 RUN cd /src; npm install
 
 # Install bower
-RUN npm install -g bower karma-cli phantomjs
+RUN npm install -g bower karma-cli
 
 # web application dependencies managed by bower
 RUN cd /src; bower install --allow-root
