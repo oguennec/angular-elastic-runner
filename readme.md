@@ -57,8 +57,15 @@ $ cd web/src/public
 * The non-source tree dependencies (nodeJS or bower) are downloaded from inside the web container and not available on the docker host.
 
 * To update these server or client dependencies:
-   - modify package.json or bower.json
-   - build a new image and replace the running web container
+   - modify package.json or bower.json on the docker host
+   - copy the modified file(s) into the running container
+   - run bower install (or update) inside the running container through a gulp task
+```sh
+$ docker cp bower.json eeandockercomposedev_web_1:/src/bower.json
+$ docker exec eeandockercompose_web_1 npm run gulp bower-install
+```
+
+* Build a new web image and replace the running web container:
 ```sh
 $ docker-compose build web
 $ docker-compose up -d web
