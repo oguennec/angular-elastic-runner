@@ -1,5 +1,6 @@
 es:
   build: es
+  restart: always
   volumes:
    - $PWD/es/config:/usr/share/elasticsearch/config
    - $PWD/es/data:/data
@@ -9,6 +10,7 @@ es:
 
 web:
   build: web
+  restart: always
   volumes:
    - $PWD/web/src/public:/src/public
    - $PWD/web/src/spec:/src/spec

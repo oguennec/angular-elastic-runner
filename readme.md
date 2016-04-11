@@ -10,6 +10,7 @@ The E.E.A.N. stack is made of :
    - [Node.js]
 
 Front-end using :
+   - [Angular directive for Elastic]
    - [Material Design for Bootstrap]
    - [Angular directive for json pretty display]
 
@@ -84,6 +85,7 @@ $ docker exec eeandockercompose_web_1 karma start
 [Node.js]: <https://nodejs.org/en/>
 [Express]: <http://expressjs.com>
 [AngularJS]: <https://angularjs.org>
+[Angular directive for Elastic]: <https://github.com/dncrews/angular-elastic-builder>
 [Material Design for Bootstrap]: <http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html>
 [Angular directive for json pretty display]: https://github.com/darul75/ng-prettyjson
 [ElasticSearch]: <https://www.elastic.co/products/elasticsearch>
