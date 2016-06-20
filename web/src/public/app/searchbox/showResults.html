@@ -1,0 +1,5 @@
+<div id="results" class="panel panel-primary">
+    <ul ng-if="simpleS.recipes" ng-repeat="res in simpleS.recipes" class="list-group">
+        <li pretty-json="doc" class="list-group-item" ng-repeat="doc in res">{{ doc }}</li>
+    </ul>
+</div>

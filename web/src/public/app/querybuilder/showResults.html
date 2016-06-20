@@ -1,7 +1,5 @@
 <div id="results" class="panel panel-primary">
-    <button hide-sidebar class="btn btn-success btn-fab-mini glyphicon" ng-class="{'glyphicon-chevron-right': !vm.isWrapperToggled, 
-           'glyphicon-chevron-left': vm.isWrapperToggled}" ng-click="toggleButton();vm.isWrapperToggled = !vm.isWrapperToggled"></button>
-    <ul ng-if="vm.resultsArr" ng-repeat="results in vm.resultsArr" class="list-group">
+    <ul ng-if="queryB.resultsArr" ng-repeat="results in queryB.resultsArr" class="list-group">
         <li pretty-json="doc" class="list-group-item" ng-repeat="doc in results">{{ doc }}</li>
     </ul>
 </div>

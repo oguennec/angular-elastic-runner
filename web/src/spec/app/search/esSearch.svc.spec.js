@@ -1,4 +1,4 @@
-describe('esSearchSvc', function () {
+describe('elasticCluster', function () {
 
     beforeEach(module('app'));
 
@@ -8,11 +8,11 @@ describe('esSearchSvc', function () {
     }));
 
     var factory = null;
-    beforeEach(inject(function (esSearchSvc) {
-        factory = esSearchSvc;
+    beforeEach(inject(function (elasticCluster) {
+        factory = elasticCluster;
     }))
 
-    it('should define esClient', inject(function (esSearchSvc) {
+    it('should define esClient', inject(function (elasticCluster) {
         expect(factory.esClient).toBeDefined()
     }))
 

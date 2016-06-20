@@ -2,8 +2,7 @@
     'use strict';
 
     angular.module("app")
-        .controller("esSearchCtrl",
-        ["$state", "$scope", "esSearchSvc", esSearchCtrl]);
+        .controller("esSearchCtrl", ["$state", "$scope", "esSearchSvc", esSearchCtrl]);
 
     function esSearchCtrl($state, $scope, esSearchSvc) {
 
@@ -11,39 +10,30 @@
 
         vm.queryTerm = '';
 
-        // below var used as argument in esSearchSvcCall(esSearchBody)
-        //var esSearchBody = 'body ...';
-
         var callEsSearchSvc = function () {
-            esSearchSvc.esClient.search({
-                index: 'openrecipes',
-                type: 'recipe',
-                body: {
-                    "query": {
-                        "match": {_all: $scope.$parent.vm.queryTerm}
-                    }
-                }
-            })
-                .then(function (response) {
+
+            var terms = $scope.$parent.vm.queryTerm;
+
+            esSearchSvc.queryMatchAllTerms('openrecipes', 'recipe', terms).then(function (response) {
                     var hits_in;
                     var hits_out = [];
-                    var results = [];
+                    var recipes = [];
 
                     hits_in = (response.hits || {}).hits || [];
 
                     for (var ii = 0; ii < hits_in.length; ii++) {
                         hits_out.push(hits_in[ii]._source);
                     }
-
-                    results.push(hits_out);
-                    vm.resultsArr = results;
+                    recipes.push(hits_out);
+                    vm.recipes = recipes;
                     $state.go('search.succeeded');
                 })
-                .catch(function(err){
-                    vm.errorMessage = err.message;
+                .catch(function (err) {
                     console.trace(err.message);
+                    vm.errorMessage = err;
                     $state.go('search.failed');
                 });
+
         };
 
         $scope.$on('PleaseQueryES', function () {

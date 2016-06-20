@@ -8,22 +8,25 @@
     "lib/bower_components"
   ],
   "dependencies": {
-    "angular": "~1.2.16",
+    "angular": "*",
     "elasticsearch": "~8.2.0",
     "jquery": "~2.1.4",
-    "bootstrap": "~3.3.2",
-    "bootstrap-material-design": "0.3.0",
+    "bootstrap": "3.3.6",
     "ng-prettyjson": "0.1.9",
     "angular-ui-router": "~0.2.15",
-    "startbootstrap-simple-sidebar": "~1.0.4",
+    "startbootstrap-simple-sidebar": "~1.0.5",
     "angular-recursion": "~1.0.5",
-    "angular-elastic-builder": "~1.4.0",
-    "font-awesome": "~4.4.0"
-  },
-  "resolutions": {
-    "angular": "~1.2.16"
+    "angular-elastic-builder-oguennec" : "1.5.2",
+    "font-awesome": "~4.4.0",
+    "angular-bootstrap": "*",
+    "moment": "*",
+    "angular-moment": "*"
+
   },
   "devDependencies": {
-    "angular-mocks": "~1.2.16"
+    "angular-mocks": "*"
+  },
+  "resolutions": {
+    "angular": ">=1.4.0"
   }
 }

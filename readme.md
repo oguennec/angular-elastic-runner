@@ -11,8 +11,6 @@ The E.E.A.N. stack is made of :
 
 Front-end using :
    - [Angular directive for Elastic]
-   - [Material Design for Bootstrap]
-   - [Angular directive for json pretty display]
 
 ## Pre-requisite to install and run this application :
 The following software must be available on the host running the application (linux, Windows, iOS) :

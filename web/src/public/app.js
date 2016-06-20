@@ -8,11 +8,11 @@
         'angular-elastic-builder'
     ]);
 
-    
-    app.config(function($locationProvider) {
+
+    app.config(function ($locationProvider) {
         $locationProvider.html5Mode({
-          enabled: true
-         ,requireBase: false
+            enabled: true,
+            requireBase: false
         });
     });
 
@@ -23,28 +23,36 @@
             .state('search', {
                 url: '/search',
                 controller: 'esSearchCtrl',
-                controllerAs: 'vm',
-                templateUrl: 'app/search/searchOutcome.html'
+                controllerAs: 'simpleS',
+                templateUrl: 'app/searchbox/searchOutcome.html'
             })
             .state('search.succeeded', {
                 //url: '/succeeded',
-                templateUrl: 'app/search/showResults.html'
+                templateUrl: 'app/searchbox/showResults.html'
             })
             .state('search.failed', {
                 //url: '/failed',
-                templateUrl: 'app/search/esAccessError.html'
+                templateUrl: 'app/searchbox/showError.html'
             })
             .state('querybuilder', {
                 url: '/querybuilder',
-                controller: 'QueryBuilder',
-                controllerAs: 'vm',
-                templateUrl: 'app/querybuilder/queryBuilder.html'
+                controller: 'queryBuilderCtrl',
+                controllerAs: 'queryB',
+                templateUrl: 'app/querybuilder/queryBuilder.html',
+                params: {
+                    queryId: 1
+                },
+                resolve: {
+                    'builderQuery': function ($stateParams, esSearchSvc) {
+                        return esSearchSvc.termQueryByKV('openrecipes', 'query', 'queryId', $stateParams.queryId);
+                    }
+                }
             })
             .state('querybuilder.show-query', {
                 //url: '/query',
                 views: {
                     'builderOutcome': {
-                        templateUrl: 'app/query/showQuery.html'
+                        templateUrl: 'app/querybuilder/showQuery.html'
                     }
                 }
             })
@@ -60,13 +68,57 @@
                 //url: '/searchEs',
                 views: {
                     'builderOutcome': {
-                        templateUrl: 'app/search/esAccessError.html'
+                        templateUrl: 'app/querybuilder/showError.html'
+                    }
+                }
+            })
+            .state('listqueries', {
+                url: '/listqueries',
+                controller: 'listQueriesCtrl',
+                controllerAs: 'listQ',
+                templateUrl: 'app/querylist/listQueries.html',
+                resolve: {
+                    'listQueries': function ($stateParams, esSearchSvc) {
+                        return esSearchSvc.queryMatchAllDesc('openrecipes', 'query');
+                    }
+                }
+            })
+            .state('listqueries.show-query', {
+                //url: '/show-query',
+                controller: 'listQueriesCtrl',
+                controllerAs: 'listQ',
+                views: {
+                    'listQuery': {
+                        templateUrl: 'app/querylist/showQuery.html'
+                    }
+                }
+            })
+            .state('listqueries.run-query', {
+                //url: '/run-query',
+                views: {
+                    'listQuery': {
+                        templateUrl: 'app/querylist/showResults.html'
+                    }
+                }
+            })
+            .state('listqueries.failed', {
+                url: '/run-query-failed',
+                views: {
+                    'listQuery': {
+                        templateUrl: 'app/querylist/showError.html'
                     }
                 }
             })
     }]);
 
-/*    app.run(['$state', 'stateWatcherService', function ($state, stateWatcherService) {
-    }]);*/
+    /*    app.run(['$state', 'stateWatcherService', function ($state, stateWatcherService) {}]);*/
+
+    app.run(
+    ['$rootScope', '$state', '$stateParams',
+      function ($rootScope, $state, $stateParams) {
+                $rootScope.$state = $state;
+                $rootScope.$stateParams = $stateParams;
+      }
+    ])
 
 })();

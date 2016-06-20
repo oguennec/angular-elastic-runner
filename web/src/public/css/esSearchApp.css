@@ -1,24 +1,6 @@
-::-webkit-input-placeholder {
-    color: white !important;
-    opacity: 0.5;
-}
-
-:-moz-placeholder {
-    /* Firefox 18- */
-    color: white !important;
-}
-
-::-moz-placeholder {
-    /* Firefox 19+ */
-    color: white !important;
-}
-
-:-ms-input-placeholder {
-    color: white !important;
-}
-
+/*
 #querybuilder {
-    background: white;
+    background: lightgrey;
 }
 
 .btn.btn-flat.glyphicon.glyphicon-search {
@@ -52,30 +34,37 @@ input.form-control {
 
 .show-query {
     background: #E0F2F1;
+    background: white;
 }
 
 .show-results {
     background: #E0F2F1;
+    background: white;
 }
 
 #wrapper {
     background: #E0F2F1;
+    background: white;
 }
 
 #results {
     background: #E0F2F1;
+    background: white;
 }
 
 #sidebar-wrapper {
     background: #B2DFDB;
+    background: white;
 }
 
 .form-control.ng-valid {
     background-color: #E0F2F1;
+    background: white;
 }
 
 .form-control.ng-valid {
     background-color: #E0F2F1;
+    background: white;
 }
 
 .form-control {
@@ -85,6 +74,7 @@ input.form-control {
 .form-control:focus, .form-control.focus {
     outline: none;
     background-image: linear-gradient(#4DB6AC, #4DB6AC), linear-gradient(#80CBC4, #80CBC4);
+    background: white;
     -webkit-animation: input-highlight 0.5s forwards;
     animation: input-highlight 0.5s forwards;
     box-shadow: none;
@@ -93,28 +83,19 @@ input.form-control {
 
 input.form-control#main-search {
     background: #26A69A;
+    background: white;
     height: 35px !important;
 }
 
 
 input.form-control.empty#main-search {
     background: #009688;
+    background: white;
     height: 35px !important;
 }
 
 .btn {
     font-weight: bold;
-}
-
-.btn-info:not(.btn-link):not(.btn-flat) {
-    background-color: #FFA000 !important;
-    background-color: #009688 !important;
-    color: rgba(255, 255, 255, 0.84);
-}
-
-.btn-info:active:not(.btn-link):not(.btn-flat) {
-    background-color: #FFD54F !important;
-    background-color: #B2DFDB !important;
 }
 
 
@@ -136,7 +117,7 @@ pre.pretty-json {
 pre#prettyjson {
     background-color: #E0F2F1;
     border-bottom: 3px solid #B2DFDB;
-}
+}*/
 
 /*  source : http://isabelcastillo.com/error-info-messages-css */
 
@@ -166,35 +147,3 @@ pre#prettyjson {
     vertical-align:middle;
 }
 
-.navbar .navbar-brand {
-    margin-top: 0px;
-    line-height: 40px;
-}
-
-.navbar .navbar-brand span {
-   font-size: 24px;
-}
-
-.navbar .navbar-form {
-    margin-top: 8px;
-}
-
-
-.btn-success:not(.btn-link):not(.btn-flat) {
-    background-color:  #009688 !important;
-    color: rgba(255, 255, 255, 0.84);
-}
-
-.btn-success:active:not(.btn-link):not(.btn-flat) {
-    background-color: #B2DFDB !important;
-}
-
-.btn-success.glyphicon.glyphicon-search.active {
-    color : black !important;
-    background-color: #B2DFDB !important; /* #AFB42B */
-    opacity: 1;
-}
-
-#bt-results {
-    background-color: #AFB42B !important;
-}

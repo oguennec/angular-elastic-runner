@@ -1,19 +1,11 @@
-<div id="wrapper">
-
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <h3>Elastic Query Builder</h3>
-            <div data-elastic-builder="vm.elasticBuilderData"></div>
-            <a class="btn btn-info" ng-click="vm.showEsQuery();setBg='show-query';vm.isWrapperToggled=!vm.isWrapperToggled" hide-sidebar ui-sref="querybuilder.show-query">Query</a>
-            <a id="bt-results" class="btn btn-success" ng-click="vm.submitEsQuery();setBg='show-results';vm.isWrapperToggled=!vm.isWrapperToggled" hide-sidebar ui-sref="querybuilder.run-query">Results</a>
-        </ul>
-    </div>
-
-    <div id="page-content-wrapper">
-        <div ng-class="setBg">
-            <div class="container-fluid" ui-view="builderOutcome">
-
-            </div>
-        </div>
-    </div>
-</div>
+<uib-tabset type="pills">
+    <uib-tab heading="Builder" active="activeJustified" justified="true">
+        <div data-elastic-builder="queryB.elasticBuilderData"></div>
+    </uib-tab>
+    <uib-tab heading="Query" active="activeJustified" justified="true" ng-click="queryB.showFilteredQuery();setBg='show-query';" ui-sref="querybuilder.show-query">
+        <div class="container-fluid" ui-view="builderOutcome"></div>
+    </uib-tab>
+    <uib-tab heading="Run" active="activeJustified" justified="true" ng-click="queryB.runFilteredQuery();setBg='show-results';" ui-sref="querybuilder.run-query">
+        <div class="container-fluid" ui-view="builderOutcome"></div>
+    </uib-tab>
+</uib-tabset>
