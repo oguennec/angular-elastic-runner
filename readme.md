@@ -34,6 +34,12 @@ $ cd es/data ; curl -XPOST localhost:9200/_bulk --data-binary @"openrecipes.2000
 ```
 >openrecipes.2000rows.json contains 2000 recipes from the [OpenRecipes] project.
 
++## Create a mapping type named query in ElasticSearch to store queries
++```sh
++$ curl -XPOST localhost:9200/openrecipes/query/1/_create -d '{"label": "dummy doc to create type"}'                 
++$ curl -XDELETE localhost:9200/openrecipes/query/1   
++```
+
 ## Browse Search Open Recipes
 http://localhost:8089
 
