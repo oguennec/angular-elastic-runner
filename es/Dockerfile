@@ -39,15 +39,15 @@ RUN set -ex \
     ./config/scripts \
   ; do \
     mkdir -p "$path"; \
-#    chown -R elasticsearch:elasticsearch "/usr/share/elasticsearch"; \
     chown -R elasticsearch:elasticsearch "$path"; \
   done
 
 COPY config ./config
 
-#USER elasticsearch
 
-#VOLUME /usr/share/elasticsearch/data
+VOLUME /usr/share/elasticsearch/data
+RUN chown -R elasticsearch:elasticsearch "/usr/share/elasticsearch"
+USER elasticsearch
 
 #COPY docker-entrypoint.sh /
 
