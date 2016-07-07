@@ -39,12 +39,13 @@ RUN set -ex \
     ./config/scripts \
   ; do \
     mkdir -p "$path"; \
+#    chown -R elasticsearch:elasticsearch "/usr/share/elasticsearch"; \
     chown -R elasticsearch:elasticsearch "$path"; \
   done
 
 COPY config ./config
 
-USER elasticsearch
+#USER elasticsearch
 
 #VOLUME /usr/share/elasticsearch/data
 
