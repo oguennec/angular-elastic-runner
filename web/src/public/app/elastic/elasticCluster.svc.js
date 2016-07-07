@@ -5,7 +5,7 @@
 
 /*        console.log($location.$$host);*/
 
-        var esEndpointLocation = $location.$$host + ':9200';
+        var esEndpointLocation = 'es';
 
         var esClient = esFactory({
             host: esEndpointLocation
