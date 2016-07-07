@@ -44,6 +44,8 @@ RUN set -ex \
 
 COPY config ./config
 
+USER elasticsearch
+
 #VOLUME /usr/share/elasticsearch/data
 
 #COPY docker-entrypoint.sh /
