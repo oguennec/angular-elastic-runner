@@ -13,6 +13,7 @@ web:
   restart: always
   volumes:
    - $PWD/web/src/public:/src/public
+   - $PWD/web/src/server:/src/server
    - $PWD/web/src/spec:/src/spec
   ports:
    - "8089:8089"

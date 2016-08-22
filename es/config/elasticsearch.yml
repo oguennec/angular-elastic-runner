@@ -2,3 +2,5 @@ http.cors.enabled:      true
 http.cors.allow-origin: "*"
 #http.cors.allow-origin: /https?:\/\/(www.)?elastic.co/
 
+transport.tcp.port:      9300
+http.port:      9200
