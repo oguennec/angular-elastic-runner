@@ -2,15 +2,15 @@
     'use strict';
 
     angular.module("app")
-        .controller("listQueriesCtrl", ["$state", "$scope", "$window", "esSearchSvc", "esModifySvc", "listQueries", listQueriesCtrl]);
+        .controller("listQueriesCtrl", ["$state", "$scope", "$http", "$window", "esSearchSvc", "esModifySvc", "listQueries", listQueriesCtrl]);
 
-    function listQueriesCtrl($state, $scope, $window, esSearchSvc, esModifySvc, listQueries) {
+    function listQueriesCtrl($state, $scope, $http, $window, esSearchSvc, esModifySvc, listQueries) {
         var vm = this;
 
         var queryObjectList = [];
         var refreshlistQueries = function () {
             queryObjectList.length = 0;
-            var queryListHits = listQueries.hits.hits;
+            var queryListHits = listQueries.data.hits.hits;
             for (var ii = 0; ii < queryListHits.length; ii++) {
                 queryObjectList.push(queryListHits[ii]);
             }
@@ -33,15 +33,10 @@
 
         vm.runQuery = function (queryObject) {
             esSearchSvc.anyQuery('openrecipes', 'recipe', queryObject.query)
-                .then(function (response) {
-                    var hits_in;
-                    var hits_out = [];
+                .then(function (data, status, headers, config) {
                     var results = [];
-                    hits_in = (response.hits || {}).hits || [];
-                    for (var ii = 0; ii < hits_in.length; ii++) {
-                        hits_out.push(hits_in[ii]._source);
-                    }
-                    results.push(hits_out);
+                    results = data;
+
                     var queryResults = {
                         answerSet: results,
                         queryLabel: queryObject.label
@@ -58,11 +53,11 @@
                     };
                     $state.go('listqueries.run-query');
                 })
-                .catch(function (err) {
-                    console.trace(err);
-                    vm.errorMessage = err;
+                .catch(function (data, status, headers, config) {
+                    vm.errorMessage = 'listqueries.failed'
                     $state.go('listqueries.failed');
                 });
+
         };
 
         /*        vm.alert = function (msg) {

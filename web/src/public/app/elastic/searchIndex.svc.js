@@ -1,11 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('app').factory('esSearchSvc', ['$location', '$state', 'elasticCluster', esSearchSvc]);
+    angular.module('app').factory('esSearchSvc', ['$location', '$state', '$http', 'elasticCluster', esSearchSvc]);
 
-    function esSearchSvc($location, $state, elasticCluster) {
+    function esSearchSvc($location, $state, $http, elasticCluster) {
 
         function queryMatchAllTerms(pIndex, pType, pTerms) {
+
             var searchQuery = {
                 index: pIndex,
                 type: pType,
@@ -17,7 +18,18 @@
                     }
                 }
             };
-            return elasticCluster.esClient.search(searchQuery)
+
+            var parameters = {
+                searchQuery: searchQuery
+            };
+
+            var config = {
+                params: parameters
+            };
+
+            var searchdoc_response = $http.get('/searchdoc_source', config);
+
+            return searchdoc_response
         }
 
         function queryMatchAllDesc(pIndex, pType) {
@@ -33,7 +45,18 @@
                     }
                 }
             };
-            return elasticCluster.esClient.search(searchQuery)
+
+            var parameters = {
+                searchQuery: searchQuery
+            };
+
+            var config = {
+                params: parameters
+            };
+
+            var searchdoc_response = $http.get('/searchdoc', config);
+
+            return searchdoc_response
         }
 
         function anyQuery(pIndex, pType, pQuery) {
@@ -43,7 +66,18 @@
                 body: pQuery,
                 //q: "_id:AVQzKStRyHo9UzWx8_58"
             };
-            return elasticCluster.esClient.search(searchQuery)
+
+            var parameters = {
+                searchQuery: searchQuery
+            };
+
+            var config = {
+                params: parameters
+            };
+
+            var searchdoc_response = $http.get('/searchdoc_source', config);
+
+            return searchdoc_response
         }
 
         function fieldMaxValue(pIndex, pType, pField) {
@@ -61,7 +95,18 @@
                     "size": 0
                 }
             };
-            return elasticCluster.esClient.search(searchQuery)
+
+            var parameters = {
+                searchQuery: searchQuery
+            };
+
+            var config = {
+                params: parameters
+            };
+
+            var searchdoc_response = $http.get('/searchdoc', config);
+
+            return searchdoc_response
         }
 
         function termQueryByKV(pIndex, pType, pField, pValue) {
@@ -75,7 +120,18 @@
                 }
             };
             searchQuery.body.query.term[pField] = pValue;
-            return elasticCluster.esClient.search(searchQuery)
+
+            var parameters = {
+                searchQuery: searchQuery
+            };
+
+            var config = {
+                params: parameters
+            };
+
+            var searchdoc_response = $http.get('/searchdoc', config);
+
+            return searchdoc_response
         }
 
         return {

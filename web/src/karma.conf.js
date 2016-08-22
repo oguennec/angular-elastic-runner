@@ -28,7 +28,7 @@ module.exports = function (config) {
           'public-lib/lib/bootstrap-material-design/dist/js/ripples.js',
           'public-lib/lib/bootstrap-material-design/dist/js/material.js',
           'public-lib/lib/angular-recursion/angular-recursion.js',
-          'public-lib/lib/angular-elastic-builder/dist/angular-elastic-builder.js',
+          'public-lib/lib/angular-elastic-builder-oguennec/dist/angular-elastic-builder.js',
 
           'public/app.js',
           'public/app/search/esSearch.ctrl.js',

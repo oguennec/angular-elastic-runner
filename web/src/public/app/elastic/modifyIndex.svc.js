@@ -1,26 +1,48 @@
 (function () {
     'use strict';
 
-    angular.module('app').factory('esModifySvc', ['$location', '$state', 'elasticCluster', esModifySvc]);
+    angular.module('app').factory('esModifySvc', ['$location', '$state', '$http', 'elasticCluster', esModifySvc]);
 
-    function esModifySvc($location, $state, elasticCluster) {
+    function esModifySvc($location, $state, $http, elasticCluster) {
 
         function createDoc(pIndex, pType, pDoc) {
-            var newObject = {
+            var newDoc = {
                 index: pIndex,
                 type: pType,
                 body: pDoc
             };
-            return elasticCluster.esClient.create(newObject)
+
+            var parameters = {
+                newDoc: newDoc
+            };
+
+            var config = {
+                params: parameters
+            };
+
+            var createdoc_response = $http.get('/createdoc', config);
+
+            return createdoc_response
         }
 
         function deleteDoc(pIndex, pType, pDocId) {
-            var delObj = {
+            var delDoc = {
                 index: pIndex,
                 type: pType,
                 id: pDocId
             };
-            return elasticCluster.esClient.delete(delObj)
+
+            var parameters = {
+                delDoc: delDoc
+            };
+
+            var config = {
+                params: parameters
+            };
+
+            var deletedoc_response = $http.get('/deletedoc', config);
+
+            return deletedoc_response
         }
 
         return {

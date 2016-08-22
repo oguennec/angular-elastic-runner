@@ -10,7 +10,7 @@ ADD src /src
 RUN cd /src; npm install
 
 # Install bower
-RUN npm install -g bower karma-cli
+RUN npm install -g bower karma-cli nodemon
 
 # web application dependencies managed by bower
 RUN cd /src; bower install --allow-root
@@ -27,4 +27,5 @@ EXPOSE  8089
 
 WORKDIR /src
 
-CMD ["node", "index.js"]
+#CMD ["node", "server.js"]
+CMD ["nodemon", "server.js"]

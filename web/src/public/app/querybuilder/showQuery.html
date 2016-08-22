@@ -1,8 +1,4 @@
-<!--<button hide-sidebar class="btn btn-success btn-fab-mini glyphicon" ng-class="{'glyphicon-chevron-right': !queryB.isWrapperToggled,
-           'glyphicon-chevron-left': queryB.isWrapperToggled}" ng-click="toggleButton();queryB.isWrapperToggled = !queryB.isWrapperToggled">
-</button>-->
 <button class="btn btn-info" ng-click="queryB.isQLToggled = !queryB.isQLToggled" ng-if="!queryB.isQLToggled">Save query</button>
 <button class="btn btn-info" ng-click="queryB.saveQuery();queryB.isQLToggled = !queryB.isQLToggled" ng-if="queryB.isQLToggled">Save</button>
 <input id="query-label" type="text" ng-model="queryB.queryLabel" placeholder="enter query label" class="form-control" ng-if="queryB.isQLToggled" required>
-
 <pre data-ng-bind="queryB.esQueryStringified"></pre>

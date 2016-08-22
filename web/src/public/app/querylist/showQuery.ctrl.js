@@ -7,9 +7,8 @@
     function showQueryCtrl($state, $scope, $window, esSearchSvc, esModifySvc, listQueries) {
 
         var vm = this;
-
-        console.log('Inside showQueryCtrl');
-        console.log('vm.resultQueries', vm.resultQueries);
+        /*      console.log('Inside showQueryCtrl');
+                console.log('vm.resultQueries', vm.resultQueries);*/
 
     }
 

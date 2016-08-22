@@ -45,73 +45,42 @@
             }
         };
 
-
-
-
         var defaultQquery = [
-        {
-          "and": [
             {
-              "and": [
-                {
-                  "terms": {
-                    "source": [
+                "and": [
+                    {
+                        "and": [
+                            {
+                                "terms": {
+                                    "source": [
                       "bonappetit",
                       "bbcfood"
                     ]
-                  }
+                                }
                 },
-                {
-                  "range": {
-                    "datePublished": {
-                      "lte": "2013-02-01",
-                      "format": "yyyy-MM-dd"
-                    }
-                  }
+                            {
+                                "range": {
+                                    "datePublished": {
+                                        "lte": "2013-02-01",
+                                        "format": "yyyy-MM-dd"
+                                    }
+                                }
                 }
               ]
             },
-            {
-              "term": {
-                "name": "chickpea"
-              }
+                    {
+                        "term": {
+                            "name": "chickpea"
+                        }
             }
           ]
         }
       ];
 
-/*        var defaultQquery = [
-            {
-                "and": [
-                    {
-                        "term": {
-                            "name": "lentils"
-                        }
-                    },
-                    {
-                        "term": {
-                            "name": "wine"
-                        }
-                    },
-                    {
-                        "term": {
-                            "name": "ham"
-                        }
-                    },
-                    {
-                        "term": {
-                            "name": "serrano"
-                        }
-                    }]
-            }];*/
-
-        if (builderQuery.hits.hits.length === 0) {
-/*          console.log('defaultQuery', defaultQquery);
-            console.log('builderQuery.hits.hits.length', builderQuery.hits.hits.length);*/
+        if (builderQuery.data.hits.hits.length === 0) {
             vm.elasticBuilderData.query = defaultQquery;
         } else {
-/*          console.log('builderQuery.hits.hits.length', builderQuery.hits.hits.length);*/
-            vm.elasticBuilderData.query = builderQuery.hits.hits[0]._source.queryObject.queryFilter;
+            vm.elasticBuilderData.query = builderQuery.data.hits.hits[0]._source.queryObject.queryFilter;
         };
 
         vm.elasticBuilderData.needsUpdate = true;
@@ -130,25 +99,13 @@
         var runQuery = function (esQuery) {
             esSearchSvc.anyQuery('openrecipes', 'recipe', esQuery)
                 .then(function (response) {
-                    var hits_in;
-                    var hits_out = [];
                     var results = [];
-
-                    hits_in = (response.hits || {}).hits || [];
-
-                    for (var ii = 0; ii < hits_in.length; ii++) {
-                        hits_out.push(hits_in[ii]._source);
-                    }
-
-                    results.push(hits_out);
+                    results = response.data;
                     vm.resultsArr = results;
                     $state.go('querybuilder.run-query');
                 })
                 .catch(function (err) {
-                    /*                    console.trace(err.message);
-                                        vm.errorMessage = err.message;*/
-                    console.trace(err);
-                    vm.errorMessage = err;
+                    vm.errorMessage = 'querybuilder.run-failed'
                     $state.go('querybuilder.run-failed');
                 });
         };
@@ -166,9 +123,7 @@
             //TO DO : disable save button ...;
 
             getMaxQueryId("queryObject.queryId").then(function (response) {
-                    var queryId = response.aggregations.max_id.value + 1;
-                    console.log(queryId);
-
+                    var queryId = response.data.aggregations.max_id.value + 1;
                     var queryObject = {
                         queryObject: {
                             queryId: queryId,
