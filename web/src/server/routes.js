@@ -31,7 +31,7 @@ module.exports = function (app) {
 
     app.get('/createdoc', function (req, res) {
         res.setHeader('Access-Control-Allow-Origin', '*');
-        esClient.delete(req.query.newDoc).then(function (response) {
+        esClient.create(req.query.newDoc).then(function (response) {
             res.write(JSON.stringify(response));
             res.end();
         });
