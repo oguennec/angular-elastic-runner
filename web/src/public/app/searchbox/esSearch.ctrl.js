@@ -17,9 +17,12 @@
             var terms = $scope.$parent.vm.queryTerm;
 
             esSearchSvc.queryMatchAllTerms('openrecipes', 'recipe', terms)
-                .then(function (data, status, headers, config) {
-                    if (data.data[0].length > 0) {
-                        vm.recipes = data;
+
+            .then(function (response) {
+                    var results = [];
+                    if (response.data[0].length > 0) {
+                        vm.recipes = response.data;
+                        console.log('vm.recipes', vm.recipes);
                         $state.go('search.succeeded');
                     };
                 })
