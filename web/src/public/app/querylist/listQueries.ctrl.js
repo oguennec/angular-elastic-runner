@@ -33,9 +33,9 @@
 
         vm.runQuery = function (queryObject) {
             esSearchSvc.anyQuery('openrecipes', 'recipe', queryObject.query)
-                .then(function (data, status, headers, config) {
+                .then(function (response) {
                     var results = [];
-                    results = data;
+                    results = response.data;
 
                     var queryResults = {
                         answerSet: results,
