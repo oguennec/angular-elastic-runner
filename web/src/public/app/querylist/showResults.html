@@ -1,4 +1,4 @@
-<div id="results" class="panel panel-primary" ng-repeat="queryResults in listQ.queryResultsArr | filter: {queryLabel: obj.queryObject.label}">
+<div id="results" class="panel panel-primary" ng-repeat="queryResults in listQ.queryResultsArr | filter: {queryLabel: obj._source.queryObject.label}">
     <ul ng-if="queryResults.answerSet" ng-repeat="answers in queryResults.answerSet" class="list-group">
         <li pretty-json="answer" class="list-group-item" ng-repeat="answer in answers"></li>
     </ul>
