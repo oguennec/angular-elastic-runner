@@ -22,7 +22,6 @@
                     var results = [];
                     if (response.data[0].length > 0) {
                         vm.recipes = response.data;
-                        console.log('vm.recipes', vm.recipes);
                         $state.go('search.succeeded');
                     };
                 })
