@@ -1,6 +1,6 @@
 <div id="listQueries">
-    <uib-accordion close-others="oneAtATime" ng-if="vmShared.resultQueries" ng-repeat="obj in vmShared.resultQueries">
-        <uib-accordion-group>
+    <uib-accordion close-others="oneAtATime" ng-if="vmShared.resultQueries" >
+        <uib-accordion-group ng-repeat="obj in vmShared.resultQueries">
             <uib-accordion-heading>
                 <!--<button class="btn btn-info" ui-sref="listqueries.show-query">{{obj.queryObject.label}}</button>-->
                 <button class="btn btn-info" ui-sref="listqueries.show-query" ng-click="listQ.showQuery(obj._source.queryObject.label)">{{obj._source.queryObject.label}}</button>
