@@ -44,9 +44,10 @@ RUN set -ex \
 
 COPY config ./config
 
-USER elasticsearch
 
-#VOLUME /usr/share/elasticsearch/data
+VOLUME /usr/share/elasticsearch/data
+RUN chown -R elasticsearch:elasticsearch "/usr/share/elasticsearch"
+USER elasticsearch
 
 #COPY docker-entrypoint.sh /
 
