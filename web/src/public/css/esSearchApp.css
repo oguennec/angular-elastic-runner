@@ -22,6 +22,8 @@ input.form-control {
 
 .list-group .list-group-item {
     padding: 0 0px;
+    padding: 0px;
+    margin: 0px;
 }
 
 #results.h3 {
@@ -119,11 +121,15 @@ pre#prettyjson {
     border-bottom: 3px solid #B2DFDB;
 }*/
 
+
 /*  source : http://isabelcastillo.com/error-info-messages-css */
 
-.isa_info, .isa_success, .isa_warning, .isa_error {
+.isa_info,
+.isa_success,
+.isa_warning,
+.isa_error {
     margin: 10px 0px;
-    padding:12px;
+    padding: 12px;
 }
 .isa_info {
     color: #00529B;
@@ -141,9 +147,58 @@ pre#prettyjson {
     color: #D8000C;
     background-color: #FFBABA;
 }
-.isa_info i, .isa_success i, .isa_warning i, .isa_error i {
-    margin:10px 22px;
-    font-size:2em;
-    vertical-align:middle;
+.isa_info i,
+.isa_success i,
+.isa_warning i,
+.isa_error i {
+    margin: 10px 22px;
+    font-size: 2em;
+    vertical-align: middle;
 }
-
+.navbar {
+    margin-bottom: 0px;
+}
+#listQueries {
+    background-color: white;
+}
+#listQueries .panel {
+    border-width: 1px;
+    border-color: rgb(221, 221, 221);
+}
+.#listQueries panel-group {
+    margin-bottom: 0px;
+}
+.#listQueries panel-body {
+    padding: 0px;
+}
+#listQueries .list-group-item {
+    padding: 0px 0px;
+}
+#listQueries .panel-default:nth-of-type(odd) >.panel-heading {
+    background-color: white;
+    border: none;
+}
+#listQueries .panel-default:nth-of-type(even) >.panel-heading {
+    background-color: #f5f5f5;
+    background-color: rgba(91, 192, 222, 0.2);
+    border: none;
+}
+#listQueries .panel-group .panel + .panel {
+    margin-top: 0px;
+    margin: none;
+}
+#listQueries .btn.btn-info {
+    display: block;
+    min-width: 200px;
+    text-align: center;
+}
+#listQueries a.accordion-toggle {
+    text-decoration: none;
+}
+#listQueries .panel {
+    border: none;
+}
+pre {
+    background-color: inherit;
+    border: none;
+}
