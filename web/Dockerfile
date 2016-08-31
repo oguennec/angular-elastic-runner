@@ -7,10 +7,11 @@ ADD src /src
 # npm behind proxy
 
 # web application dependencies managed by Node.js
-RUN cd /src; npm install
+RUN cd /src; npm install --only=prod 
 
 # Install bower
-RUN npm install -g bower karma-cli nodemon
+#RUN npm install -g bower karma-cli nodemon
+RUN npm install -g bower karma-cli
 
 # web application dependencies managed by bower
 RUN cd /src; bower install --allow-root
@@ -27,5 +28,5 @@ EXPOSE  8089
 
 WORKDIR /src
 
-#CMD ["node", "server.js"]
-CMD ["nodemon", "server.js"]
+CMD ["node", "server.js"]
+#CMD ["nodemon", "server.js"]
