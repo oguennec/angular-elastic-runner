@@ -1,4 +1,4 @@
-FROM java:8-jre
+FROM openjdk:8-jre
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
@@ -16,9 +16,8 @@ RUN set -x \
 # https://packages.elasticsearch.org/GPG-KEY-elasticsearch
 RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 46095ACC8548582C1A2699A9D27D666CD88E42B4
 
-ENV ELASTICSEARCH_MAJOR 1.7
-ENV ELASTICSEARCH_VERSION 1.7.5
-ENV ELASTICSEARCH_REPO_BASE http://packages.elasticsearch.org/elasticsearch/1.7/debian
+ENV ELASTICSEARCH_VERSION 2.1.2
+ENV ELASTICSEARCH_REPO_BASE http://packages.elasticsearch.org/elasticsearch/2.x/debian
 
 RUN echo "deb $ELASTICSEARCH_REPO_BASE stable main" > /etc/apt/sources.list.d/elasticsearch.list
 
@@ -31,6 +30,8 @@ ENV PATH /usr/share/elasticsearch/bin:$PATH
 
 WORKDIR /usr/share/elasticsearch
 
+COPY config ./config
+
 RUN set -ex \
   && for path in \
     ./data \
@@ -42,15 +43,11 @@ RUN set -ex \
     chown -R elasticsearch:elasticsearch "$path"; \
   done
 
-COPY config ./config
-
-
 VOLUME /usr/share/elasticsearch/data
-RUN chown -R elasticsearch:elasticsearch "/usr/share/elasticsearch"
-USER elasticsearch
+VOLUME /usr/share/elasticsearch/config
 
-#COPY docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 
 EXPOSE 9200 9300
-#ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["elasticsearch"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["elasticsearch","--network.host","_non_loopback_"]

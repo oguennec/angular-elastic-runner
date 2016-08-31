@@ -2,7 +2,6 @@ es:
   build: es
   restart: always
   volumes:
-   - $PWD/es/config:/usr/share/elasticsearch/config
    - $PWD/es/data:/data
   ports:
    - "9200:9200"
