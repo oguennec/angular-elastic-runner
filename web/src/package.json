@@ -12,7 +12,6 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "elasticsearch": "^11.0.1",
     "gulp": "^3.9.1",
     "gulp-bower": "0.0.13",
     "jasmine-core": "^2.3.4",
