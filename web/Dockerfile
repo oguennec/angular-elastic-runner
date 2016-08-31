@@ -21,7 +21,7 @@ RUN cd /tmp; bower install --allow-root
 
 # create symbolic links rather than copying dir containg npm and bower dependencies to application src location - image size optimisation
 #RUN mkdir -p /src/public-lib/lib && cp -a /tmp/node_modules /src && cp -a /tmp/public-lib/lib /src/public-lib/lib
-RUN mkdir -p /src/public-lib/lib && ln -s /tmp/node_modules /src/node_modules && ln -s /tmp/public-lib/lib /src/public-lib/lib
+RUN mkdir -p /src/public-lib && ln -s /tmp/node_modules /src/node_modules && ln -s /tmp/public-lib/lib /src/public-lib/lib
 
 # web application source code
 ADD src /src
