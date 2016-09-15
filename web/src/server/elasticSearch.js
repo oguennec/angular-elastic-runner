@@ -2,6 +2,7 @@
 var elasticsearch = require('elasticsearch');
 //var esEndpointIp = process.env.ES_1_PORT_9200_TCP_ADDR;
 //var esEndpointPort = process.env.ES_1_PORT_9200_TCP_PORT;
+var hostname = process.env.HOSTNAME;
 var esEndpointIp = process.env.ES_SERVICE_HOST;
 var esEndpointPort = process.env.ES_SERVICE_PORT;
 var esEndpointLocation = esEndpointIp + ':' + esEndpointPort;
@@ -61,6 +62,7 @@ module.exports.search = function (req) {
             }
     }];
 
+    console.log('Web request has hit host : '+ hostname);
     return esClient.search(JSON.parse(req));
 
 }

@@ -14,9 +14,9 @@ var globals = require('./globals');
 
 //module.exports = globals;
 
-global.rootPath = process.env.PWD;
+//global.rootPath = process.env.PWD;
 //global.rootPath = path.resolve(__dirname);
-console.log('global.rootPath',global.rootPath);
+//console.log('global.rootPath',global.rootPath);
 
 //app.use(function(req, res, next) {
 //  req.rootPath = __dirname;
