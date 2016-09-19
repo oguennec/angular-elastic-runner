@@ -31,7 +31,7 @@
         <div uib-collapse="isCollapsed">
             <form class="nav navbar-nav navbar-left navbar-form" role="search">
                 <div class="form-group">
-                    <input id="main-search" ui-sref="search" type="text" ng-model="vm.queryTerm" ng-change="$broadcast('PleaseQueryES')" placeholder="search ingredient" class="form-control" ng-click="vm.queryTerm =''">
+                    <input id="main-search" ui-sref="search" type="text" ng-model="vm.queryTerm" ng-change="$broadcast('PleaseQueryES')" placeholder="search" class="form-control" ng-click="vm.queryTerm =''">
                     <button ui-sref="querybuilder" class="btn btn-success glyphicon glyphicon-search"></button>
                     <button ui-sref="listqueries" class="btn btn-info">Queries</button>
                 </div>
