@@ -158,6 +158,11 @@ pre#prettyjson {
 .navbar {
     margin-bottom: 0px;
 }
+
+.navbar-default {
+    background-color: paleturquoise;
+}
+
 #listQueries {
     background-color: white;
 }
