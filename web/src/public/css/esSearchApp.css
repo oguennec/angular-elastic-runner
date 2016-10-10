@@ -159,9 +159,9 @@ pre#prettyjson {
     margin-bottom: 0px;
 }
 
-.navbar-default {
-    background-color: paleturquoise;
-}
+/*.navbar-default {
+    background-color: red;
+}*/
 
 #listQueries {
     background-color: white;
