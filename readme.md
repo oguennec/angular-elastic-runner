@@ -1,4 +1,4 @@
-[![BuildStatus](https://travis-ci.org/oguennec/eean-docker-compose.svg?branch=master)](https://travis-ci.org/oguennec/eean-docker-compose)
+[![BuildStatus](https://travis-ci.org/oguennec/angular-elastic-runner.svg?branch=master)](https://travis-ci.org/oguennec/angular-elastic-runner)
 
 # Demo application : Search Open Recipes
 ## E.E.A.N. stack running on [docker] containers orchestrated by [docker-compose]
