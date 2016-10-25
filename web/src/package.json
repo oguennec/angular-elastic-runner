@@ -12,8 +12,12 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "elasticsearch": "^11.0.1",
     "gulp": "^3.9.1",
     "gulp-bower": "0.0.13",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.15",
     "karma-jasmine": "^0.3.6",
