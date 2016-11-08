@@ -22,8 +22,8 @@ Tested with docker 1.9.1 and docker-compose 1.5.2
 
 ## Installation
 ```sh
-$ git clone https://github.com/oguennec/eean-docker-compose
-$ cd eean-docker-compose 
+$ git clone https://github.com/oguennec/angular-elastic-runner
+$ cd angular-elastic-runner 
 $ docker-compose build
 $ docker-compose up -d
 ```
