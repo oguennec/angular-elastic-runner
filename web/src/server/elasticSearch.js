@@ -4,9 +4,17 @@ var esEndpointIp = process.env.ES_1_PORT_9200_TCP_ADDR;
 var esEndpointPort = process.env.ES_1_PORT_9200_TCP_PORT;
 var esEndpointLocation = esEndpointIp + ':' + esEndpointPort;
 
+if (esEndpointIp == null) {
+    console.log('Following docker env variable not available within NodeJS : ES_1_PORT_9200_TCP_ADDR');
+    console.log('process.env.ES_1_PORT_9208_TCP_ADDR ', process.env.ES_1_PORT_9200_TCP_ADDR);
+    console.log('esEndpointLocation', esEndpointLocation);
+} else {
+    console.log('esEndpointLocation', esEndpointLocation);
+}
+
 var esClient = new elasticsearch.Client({
     host: esEndpointLocation
-    //,log: 'trace'
+        //,log: 'trace'
 });
 
 module.exports.search = function (req) {
