@@ -43,7 +43,7 @@ $ curl -XDELETE localhost:9200/openrecipes/query/1
 ## Browse Search Open Recipes
 http://localhost:8089
 
-List docker containers running : eeandockercompose_es_1 (ElasticSeach) and eeandockercompose_web_1 (EEAN Stack)
+List docker containers running : angularelasticrunner_es_1 (ElasticSeach) and angularelasticrunner_web_1 (EEAN Stack)
 ```sh
 $ docker ps
 ```
@@ -66,8 +66,8 @@ $ cd web/src/public
    - copy the modified file(s) into the running container
    - run bower install (or update) inside the running container through a gulp task
 ```sh
-$ docker cp bower.json eeandockercomposedev_web_1:/src/bower.json
-$ docker exec eeandockercompose_web_1 npm run gulp bower-install
+$ docker cp bower.json angularelasticrunnerdev_web_1:/src/bower.json
+$ docker exec angularelasticrunner_web_1 npm run gulp bower-install
 ```
 
 * Build a new web image and replace the running web container:
@@ -77,7 +77,7 @@ $ docker-compose up -d web
 ```
 * Test javascript with Jasmine in Phantomjs by starting Karma like this
 ```sh
-$ docker exec eeandockercompose_web_1 karma start
+$ docker exec angularelasticrunner_web_1 karma start
 ```
 
 * Marvel plugin is a web interface to ElasticSearch
