@@ -40,11 +40,13 @@
                 controllerAs: 'queryB',
                 templateUrl: 'app/querybuilder/queryBuilder.html',
                 params: {
-                    queryId: 1
+                    queryObject: {
+                        queryId: 1
+                    }
                 },
                 resolve: {
                     'builderQuery': function ($stateParams, $http, esSearchSvc) {
-                        return esSearchSvc.termQueryByKV('openrecipes', 'query', 'queryId', $stateParams.queryId);
+                        return esSearchSvc.termQueryByKV('openrecipes', 'query', 'queryObject.queryId', $stateParams.queryObject.queryId);
                     }
                 }
             })

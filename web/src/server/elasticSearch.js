@@ -14,7 +14,7 @@ if (esEndpointIp == null) {
 
 var esClient = new elasticsearch.Client({
     host: esEndpointLocation
-        //,log: 'trace'
+   ,log: 'trace'
 });
 
 module.exports.search = function (req) {

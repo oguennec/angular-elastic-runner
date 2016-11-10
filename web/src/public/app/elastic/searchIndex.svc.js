@@ -115,11 +115,18 @@
                 type: pType,
                 body: {
                     "query": {
-                        "term": {}
+                        "bool": {
+                            "must": [
+                                {
+                                    "match": {}
+                                }
+                            ]
+                        }
                     }
                 }
             };
-            searchQuery.body.query.term[pField] = pValue;
+
+            searchQuery.body.query.bool.must[0].match[pField] = pValue;
 
             var parameters = {
                 searchQuery: searchQuery

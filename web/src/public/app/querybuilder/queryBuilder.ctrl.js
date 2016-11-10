@@ -45,40 +45,64 @@
             }
         };
 
-        var defaultQquery = [
+        /*             var defaultQuery = [
+                 {
+                     "and": [
+                         {
+                             "and": [
+                                 {
+                                     "terms": {
+                                         "source": [
+                           "bbcfood",
+                           "bonappetit"
+                         ]
+                                     }
+                     },
+                                 {
+                                     "range": {
+                                         "datePublished": {
+                                             "lte": "2013-02-01",
+                                             "format": "yyyy-MM-dd"
+                                         }
+                                     }
+                     }
+                   ]
+                 },
+                         {
+                             "term": {
+                                 "name": "chickpea"
+                             }
+                 }
+               ]
+             }
+           ];*/
+
+        var defaultQuery = [
             {
-                "and": [
-                    {
-                        "and": [
-                            {
-                                "terms": {
-                                    "source": [
-                      "bonappetit",
-                      "bbcfood"
-                    ]
-                                }
-                },
-                            {
-                                "range": {
-                                    "datePublished": {
-                                        "lte": "2013-02-01",
-                                        "format": "yyyy-MM-dd"
-                                    }
-                                }
+                "terms": {
+                    "source": [
+              "bbcfood",
+              "bonappetit"
+            ]
                 }
-              ]
-            },
-                    {
-                        "term": {
-                            "name": "chickpea"
-                        }
-            }
-          ]
+        },
+            {
+                "range": {
+                    "datePublished": {
+                        "lte": "2013-02-01",
+                        "format": "yyyy-MM-dd"
+                    }
+                }
+        },
+            {
+                "term": {
+                    "name": "chickpea"
+                }
         }
       ];
 
         if (builderQuery.data.hits.hits.length === 0) {
-            vm.elasticBuilderData.query = defaultQquery;
+            vm.elasticBuilderData.query = defaultQuery;
         } else {
             vm.elasticBuilderData.query = builderQuery.data.hits.hits[0]._source.queryObject.queryFilter;
         };

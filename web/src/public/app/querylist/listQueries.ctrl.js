@@ -66,7 +66,7 @@
 
         vm.goToBuilder = function (queryObject) {
             $state.go('querybuilder', {
-                queryId: queryObject.queryId
+                queryObject: queryObject
             });
         };
 

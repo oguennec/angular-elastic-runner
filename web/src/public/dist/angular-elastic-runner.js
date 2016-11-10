@@ -246,11 +246,18 @@
                 type: pType,
                 body: {
                     "query": {
-                        "term": {}
+                        "bool": {
+                            "must": [
+                                {
+                                    "match": {}
+                                }
+                            ]
+                        }
                     }
                 }
             };
-            searchQuery.body.query.term[pField] = pValue;
+
+            searchQuery.body.query.bool.must[0].match[pField] = pValue;
 
             var parameters = {
                 searchQuery: searchQuery
@@ -274,197 +281,6 @@
         }
     }
 }());
-
-(function () {
-    'use strict';
-
-    angular.module("app")
-        .controller("esSearchCtrl", ["$state", "$scope", "$http", "esSearchSvc", esSearchCtrl]);
-
-    function esSearchCtrl($state, $scope, $http, esSearchSvc) {
-
-        var vm = this;
-
-        vm.queryTerm = '';
-
-        vm.recipes = [];
-
-        var callEsSearchSvc = function () {
-
-            var terms = $scope.$parent.vm.queryTerm;
-
-            esSearchSvc.queryMatchAllTerms('openrecipes', 'recipe', terms)
-
-            .then(function (response) {
-                    var results = [];
-                    if (response.data[0].length > 0) {
-                        vm.recipes = response.data;
-                        //console.log('vm.recipes', vm.recipes);
-                        $state.go('search.succeeded');
-                    };
-                })
-                .catch(function (data, status, headers, config) {
-                    $state.go('search.failed');
-                });
-        };
-
-        $scope.$on('PleaseQueryES', function () {
-            callEsSearchSvc();
-        });
-
-    };
-
-})();
-
-(function () {
-    'use strict';
-
-    angular.module("app")
-        .controller("listQueriesCtrl", ["$state", "$scope", "$http", "$window", "esSearchSvc", "esModifySvc", "listQueries", listQueriesCtrl]);
-
-    function listQueriesCtrl($state, $scope, $http, $window, esSearchSvc, esModifySvc, listQueries) {
-        var vm = this;
-
-        var queryObjectList = [];
-        var refreshlistQueries = function () {
-            queryObjectList.length = 0;
-            var queryListHits = listQueries.data.hits.hits;
-            for (var ii = 0; ii < queryListHits.length; ii++) {
-                queryObjectList.push(queryListHits[ii]);
-            }
-            return queryObjectList;
-        }
-
-        /* http://stackoverflow.com/questions/27768033/ui-router-nested-views-with-shared-controller
-           http://plnkr.co/edit/Qy2Kg6iycaQh9PuEIbzJ?p=preview */
-        $scope.vmShared = $scope.vmShared || {
-            resultQueries: refreshlistQueries()
-        };
-
-        vm.isQueryDisplayed = true;
-
-        vm.showQuery = function () {
-            $state.go('listqueries.show-query');
-        }
-
-        vm.queryResultsArr = [];
-
-        vm.runQuery = function (queryObject) {
-            esSearchSvc.anyQuery('openrecipes', 'recipe', queryObject.query)
-                .then(function (response) {
-                    var results = [];
-                    results = response.data;
-
-                    var queryResults = {
-                        answerSet: results,
-                        queryLabel: queryObject.label
-                    };
-                    //replace VALUE of current KEY if exists ...
-                    //search first index of element with same query label, will return -1 if doesnt exist ...
-                    var idx = vm.queryResultsArr.map(function (e) {
-                        return e.queryLabel
-                    }).indexOf(queryResults.queryLabel);
-                    if (idx === -1) {
-                        vm.queryResultsArr.push(queryResults);
-                    } else {
-                        vm.queryResultsArr[idx] = queryResults;
-                    };
-                    $state.go('listqueries.run-query');
-                })
-                .catch(function (data, status, headers, config) {
-                    vm.errorMessage = 'listqueries.failed'
-                    $state.go('listqueries.failed');
-                });
-
-        };
-
-        /*        vm.alert = function (msg) {
-                    alert(msg);
-                };*/
-
-        vm.goToBuilder = function (queryObject) {
-            $state.go('querybuilder', {
-                queryId: queryObject.queryId
-            });
-        };
-
-        vm.deleteQuery = function (queryObject) {
-            esModifySvc.deleteDoc('openrecipes', 'query', queryObject._id)
-                .then(function (response) {
-                    $scope.vmShared.resultQueries.splice($scope.vmShared.resultQueries.indexOf(queryObject), 1);
-                    console.log('Query deleted succcessfully !');
-                })
-                .catch(function (err) {
-                    console.log('Failed to delete query !');
-                    vm.errorMessage = err.message;
-                    console.trace(err.message);
-                });
-        };
-
-    };
-
-})();
-
-(function () {
-    'use strict';
-
-    angular.module("app")
-        .controller("showQueryCtrl", ["$state", "$scope", "$window", "esSearchSvc", "esModifySvc", "listQueries", showQueryCtrl]);
-
-    function showQueryCtrl($state, $scope, $window, esSearchSvc, esModifySvc, listQueries) {
-
-        var vm = this;
-        /*      console.log('Inside showQueryCtrl');
-                console.log('vm.resultQueries', vm.resultQueries);*/
-
-    }
-
-})();
-
-(function () {
-    'use strict';
-
-    angular.module('app').factory('stateWatcherService', stateWatcherService);
-
-    stateWatcherService.$inject = ['$rootScope'];
-
-    function stateWatcherService($rootScope) {
-
-        $rootScope.$on('$stateChangeStart', stateChangeStart);
-        $rootScope.$on('$stateChangeSuccess', stateChangeSuccess);
-        $rootScope.$on('$stateChangeError', stateChangeError);
-        $rootScope.$on('$stateNotFound', stateNotFound);
-
-        /*
-                function stateChangeStart(event, toState, toParams, fromState, fromParams){
-                    console.log('state change start', event, toState, toParams, fromState, fromParams);
-                }
-
-                function stateChangeSuccess(event, toState, toParams, fromState, fromParams){
-                    console.log('state change success', event, toState, toParams, fromState, fromParams);
-                }*/
-
-        function stateChangeStart(event, toState, toParams, fromState, fromParams) {
-            console.log('state change start', event, 'toState:', toState, 'toParams:', toParams, 'fromState:', fromState, 'fromParams:', fromParams);
-        }
-
-        function stateChangeSuccess(event, toState, toParams, fromState, fromParams) {
-            console.log('state change success', event, 'toState:', toState, 'toParams:', toParams, 'fromState:', fromState, 'fromParams:', fromParams);
-        }
-
-        function stateChangeError(event, toState, toParams, fromState, fromParams, error) {
-            console.log('state change error', event, toState, toParams, fromState, fromParams, error);
-        }
-
-        function stateNotFound(event, unfoundState, fromState, fromParams) {
-            console.log('state not found', event, unfoundState, fromState, fromParams);
-        }
-
-        var service = {};
-        return service;
-    }
-})();
-
 (function () {
     'use strict';
 
@@ -512,40 +328,64 @@
             }
         };
 
-        var defaultQquery = [
+        /*             var defaultQuery = [
+                 {
+                     "and": [
+                         {
+                             "and": [
+                                 {
+                                     "terms": {
+                                         "source": [
+                           "bbcfood",
+                           "bonappetit"
+                         ]
+                                     }
+                     },
+                                 {
+                                     "range": {
+                                         "datePublished": {
+                                             "lte": "2013-02-01",
+                                             "format": "yyyy-MM-dd"
+                                         }
+                                     }
+                     }
+                   ]
+                 },
+                         {
+                             "term": {
+                                 "name": "chickpea"
+                             }
+                 }
+               ]
+             }
+           ];*/
+
+        var defaultQuery = [
             {
-                "and": [
-                    {
-                        "and": [
-                            {
-                                "terms": {
-                                    "source": [
-                      "bonappetit",
-                      "bbcfood"
-                    ]
-                                }
-                },
-                            {
-                                "range": {
-                                    "datePublished": {
-                                        "lte": "2013-02-01",
-                                        "format": "yyyy-MM-dd"
-                                    }
-                                }
+                "terms": {
+                    "source": [
+              "bbcfood",
+              "bonappetit"
+            ]
                 }
-              ]
-            },
-                    {
-                        "term": {
-                            "name": "chickpea"
-                        }
-            }
-          ]
+        },
+            {
+                "range": {
+                    "datePublished": {
+                        "lte": "2013-02-01",
+                        "format": "yyyy-MM-dd"
+                    }
+                }
+        },
+            {
+                "term": {
+                    "name": "chickpea"
+                }
         }
       ];
 
         if (builderQuery.data.hits.hits.length === 0) {
-            vm.elasticBuilderData.query = defaultQquery;
+            vm.elasticBuilderData.query = defaultQuery;
         } else {
             vm.elasticBuilderData.query = builderQuery.data.hits.hits[0]._source.queryObject.queryFilter;
         };
@@ -623,5 +463,194 @@
 
         vm.isQLToggled = false;
 
+    }
+})();
+(function () {
+    'use strict';
+
+    angular.module("app")
+        .controller("listQueriesCtrl", ["$state", "$scope", "$http", "$window", "esSearchSvc", "esModifySvc", "listQueries", listQueriesCtrl]);
+
+    function listQueriesCtrl($state, $scope, $http, $window, esSearchSvc, esModifySvc, listQueries) {
+        var vm = this;
+
+        var queryObjectList = [];
+        var refreshlistQueries = function () {
+            queryObjectList.length = 0;
+            var queryListHits = listQueries.data.hits.hits;
+            for (var ii = 0; ii < queryListHits.length; ii++) {
+                queryObjectList.push(queryListHits[ii]);
+            }
+            return queryObjectList;
+        }
+
+        /* http://stackoverflow.com/questions/27768033/ui-router-nested-views-with-shared-controller
+           http://plnkr.co/edit/Qy2Kg6iycaQh9PuEIbzJ?p=preview */
+        $scope.vmShared = $scope.vmShared || {
+            resultQueries: refreshlistQueries()
+        };
+
+        vm.isQueryDisplayed = true;
+
+        vm.showQuery = function () {
+            $state.go('listqueries.show-query');
+        }
+
+        vm.queryResultsArr = [];
+
+        vm.runQuery = function (queryObject) {
+            esSearchSvc.anyQuery('openrecipes', 'recipe', queryObject.query)
+                .then(function (response) {
+                    var results = [];
+                    results = response.data;
+
+                    var queryResults = {
+                        answerSet: results,
+                        queryLabel: queryObject.label
+                    };
+                    //replace VALUE of current KEY if exists ...
+                    //search first index of element with same query label, will return -1 if doesnt exist ...
+                    var idx = vm.queryResultsArr.map(function (e) {
+                        return e.queryLabel
+                    }).indexOf(queryResults.queryLabel);
+                    if (idx === -1) {
+                        vm.queryResultsArr.push(queryResults);
+                    } else {
+                        vm.queryResultsArr[idx] = queryResults;
+                    };
+                    $state.go('listqueries.run-query');
+                })
+                .catch(function (data, status, headers, config) {
+                    vm.errorMessage = 'listqueries.failed'
+                    $state.go('listqueries.failed');
+                });
+
+        };
+
+        /*        vm.alert = function (msg) {
+                    alert(msg);
+                };*/
+
+        vm.goToBuilder = function (queryObject) {
+            $state.go('querybuilder', {
+                queryObject: queryObject
+            });
+        };
+
+        vm.deleteQuery = function (queryObject) {
+            esModifySvc.deleteDoc('openrecipes', 'query', queryObject._id)
+                .then(function (response) {
+                    $scope.vmShared.resultQueries.splice($scope.vmShared.resultQueries.indexOf(queryObject), 1);
+                    console.log('Query deleted succcessfully !');
+                })
+                .catch(function (err) {
+                    console.log('Failed to delete query !');
+                    vm.errorMessage = err.message;
+                    console.trace(err.message);
+                });
+        };
+
+    };
+
+})();
+
+(function () {
+    'use strict';
+
+    angular.module("app")
+        .controller("showQueryCtrl", ["$state", "$scope", "$window", "esSearchSvc", "esModifySvc", "listQueries", showQueryCtrl]);
+
+    function showQueryCtrl($state, $scope, $window, esSearchSvc, esModifySvc, listQueries) {
+
+        var vm = this;
+        /*      console.log('Inside showQueryCtrl');
+                console.log('vm.resultQueries', vm.resultQueries);*/
+
+    }
+
+})();
+
+(function () {
+    'use strict';
+
+    angular.module("app")
+        .controller("esSearchCtrl", ["$state", "$scope", "$http", "esSearchSvc", esSearchCtrl]);
+
+    function esSearchCtrl($state, $scope, $http, esSearchSvc) {
+
+        var vm = this;
+
+        vm.queryTerm = '';
+
+        vm.recipes = [];
+
+        var callEsSearchSvc = function () {
+
+            var terms = $scope.$parent.vm.queryTerm;
+
+            esSearchSvc.queryMatchAllTerms('openrecipes', 'recipe', terms)
+
+            .then(function (response) {
+                    var results = [];
+                    if (response.data[0].length > 0) {
+                        vm.recipes = response.data;
+                        //console.log('vm.recipes', vm.recipes);
+                        $state.go('search.succeeded');
+                    };
+                })
+                .catch(function (data, status, headers, config) {
+                    $state.go('search.failed');
+                });
+        };
+
+        $scope.$on('PleaseQueryES', function () {
+            callEsSearchSvc();
+        });
+
+    };
+
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('stateWatcherService', stateWatcherService);
+
+    stateWatcherService.$inject = ['$rootScope'];
+
+    function stateWatcherService($rootScope) {
+
+        $rootScope.$on('$stateChangeStart', stateChangeStart);
+        $rootScope.$on('$stateChangeSuccess', stateChangeSuccess);
+        $rootScope.$on('$stateChangeError', stateChangeError);
+        $rootScope.$on('$stateNotFound', stateNotFound);
+
+        /*
+                function stateChangeStart(event, toState, toParams, fromState, fromParams){
+                    console.log('state change start', event, toState, toParams, fromState, fromParams);
+                }
+
+                function stateChangeSuccess(event, toState, toParams, fromState, fromParams){
+                    console.log('state change success', event, toState, toParams, fromState, fromParams);
+                }*/
+
+        function stateChangeStart(event, toState, toParams, fromState, fromParams) {
+            console.log('state change start', event, 'toState:', toState, 'toParams:', toParams, 'fromState:', fromState, 'fromParams:', fromParams);
+        }
+
+        function stateChangeSuccess(event, toState, toParams, fromState, fromParams) {
+            console.log('state change success', event, 'toState:', toState, 'toParams:', toParams, 'fromState:', fromState, 'fromParams:', fromParams);
+        }
+
+        function stateChangeError(event, toState, toParams, fromState, fromParams, error) {
+            console.log('state change error', event, toState, toParams, fromState, fromParams, error);
+        }
+
+        function stateNotFound(event, unfoundState, fromState, fromParams) {
+            console.log('state not found', event, unfoundState, fromState, fromParams);
+        }
+
+        var service = {};
+        return service;
     }
 })();
