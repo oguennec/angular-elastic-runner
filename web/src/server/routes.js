@@ -8,15 +8,15 @@ module.exports = function (app) {
         res.setHeader('Access-Control-Allow-Origin', '*');
 
         esClient.search(req.query.searchQuery).then(function (response) {
-            var recipes = [];
+            var docs = [];
             var hits_in;
             var hits_out = [];
             hits_in = (response.hits || {}).hits || [];
             for (var ii = 0; ii < hits_in.length; ii++) {
                 hits_out.push(hits_in[ii]._source);
             }
-            recipes.push(hits_out);
-            res.write(JSON.stringify(recipes));
+            docs.push(hits_out);
+            res.write(JSON.stringify(docs));
             res.end();
         });
     });

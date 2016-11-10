@@ -1,7 +1,7 @@
 {
-  "name": "SearchOpenRecipes",
-  "version": "0.0.1",
-  "description": "Demo search application using the EEAN stack - ElasticSearch Express AngularJS Node.JS and bootstrap-material-design",
+  "name": "AngularElasticRunner",
+  "version": "0.0.2",
+  "description": "Demo search application using the EEAN stack - ElasticSearch ExpressJS AngularJS NodeJS",
   "main": "index.js",
   "scripts": {
     "gulp": "gulp"
