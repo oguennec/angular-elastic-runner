@@ -45,38 +45,6 @@
             }
         };
 
-        /*             var defaultQuery = [
-                 {
-                     "and": [
-                         {
-                             "and": [
-                                 {
-                                     "terms": {
-                                         "source": [
-                           "bbcfood",
-                           "bonappetit"
-                         ]
-                                     }
-                     },
-                                 {
-                                     "range": {
-                                         "datePublished": {
-                                             "lte": "2013-02-01",
-                                             "format": "yyyy-MM-dd"
-                                         }
-                                     }
-                     }
-                   ]
-                 },
-                         {
-                             "term": {
-                                 "name": "chickpea"
-                             }
-                 }
-               ]
-             }
-           ];*/
-
         var defaultQuery = [
             {
                 "terms": {
