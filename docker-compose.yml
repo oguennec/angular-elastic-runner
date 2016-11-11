@@ -1,6 +1,7 @@
 es:
   build: es
-  restart: always
+  environment:
+   - ES_JAVA_OPTS=-Dmapper.allow_dots_in_name=true
   volumes:
    - $PWD/es/data:/data
   ports:
@@ -9,7 +10,6 @@ es:
 
 web:
   build: web
-  restart: always
   volumes:
    - $PWD/web/src/public:/src/public
    - $PWD/web/src/server:/src/server
