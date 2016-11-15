@@ -1,10 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('app').factory('queryDslSvc', ['$location', '$state', 'elasticCluster', queryDslSvc]);
+    angular.module('app').factory('queryDslSvc', ['$location', '$state', queryDslSvc]);
 
     // Elastic 1.7 but Filtered Query deprecated in Elastic 2
-    function queryDslSvc($location, $state, elasticCluster) {
+    function queryDslSvc($location, $state) {
 
         var buildFilteredQueryFromFilter = function (pFilter) {
             var filteredQuery = {

@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('app').factory('esModifySvc', ['$location', '$state', '$http', 'elasticCluster', esModifySvc]);
+    angular.module('app').factory('esModifySvc', ['$location', '$state', '$http', esModifySvc]);
 
-    function esModifySvc($location, $state, $http, elasticCluster) {
+    function esModifySvc($location, $state, $http) {
 
         function createDoc(pIndex, pType, pDoc) {
             var newDoc = {

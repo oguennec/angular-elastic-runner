@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('app').factory('esSearchSvc', ['$location', '$state', '$http', 'elasticCluster', esSearchSvc]);
+    angular.module('app').factory('esSearchSvc', ['$location', '$state', '$http', esSearchSvc]);
 
-    function esSearchSvc($location, $state, $http, elasticCluster) {
+    function esSearchSvc($location, $state, $http) {
 
         function queryMatchAllTerms(pIndex, pType, pTerms) {
 
