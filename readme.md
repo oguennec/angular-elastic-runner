@@ -13,7 +13,7 @@ Front-end using :
    - [Angular directive for Elastic]
 
 ## Pre-requisite to install and run this application :
-The following software must be available on the host running the application (linux, Windows, iOS) :
+The following software must be available on the host running the application (linux, Windows, iOS):
    * docker
    * docker-compose
 
